@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/README/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/openshift-bootcamp/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/configs/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/deploying_pods/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/2. kubernetes_deployment/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/exposing_app_with_service/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/rollouts-and-rollbacks/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/8. Using Configmaps and Secrets/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/6. Kubernetes Autoscaling/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/6. deploying_sample_app/</loc>
+     <lastmod>2018-01-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>

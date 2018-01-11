@@ -1,0 +1,464 @@
+{
+    "docs": [
+        {
+            "location": "/README/", 
+            "text": "Openshift Bootcamp\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDuration\n\n\n2days\n\n\n\n\n\n\nLevel\n\n\nIntermediate, Advanced\n\n\n\n\n\n\nModules\n\n\n10\n\n\n\n\n\n\nFlipped Class\n\n\nNo\n\n\n\n\n\n\nCustomizable\n\n\nYes\n\n\n\n\n\n\n\n\nObjectives\n\n\nThis course serves as a accelerator program to understand, setup and master openshift container platform for professionals who already have an understanding of docker and kubernetes.\n\n\nWho is this for ?\n\n\n\n\nThis course is for someone who has already taken docker fundamentals, and kubernetes bootcamp  courses/have equivalent knowledge, and would like to learn how to leverage \nOpenshift Platform\n which is an abstraction on top of it.\n\n\nIf you are a \nOperations/Systems\n personnel and would like to learn how to build a production grade scalable, fault tolerant and high available openshift infrastructure, and administer it,  this course it for you.\n\n\nIf you are a \ndeveloper\n and would like to learn how to deploy your application stacks in production, on top of paas solution and also understand the underlying primitives,  this course is for you.\n\n\nYou could be developer/operations personnel and be in charge of securing application infrastructure and setup auxiliary services such as  monitoring, centralized  logging etc. this course is for you.\n\n\n\n\nWho is this not for ?\n\n\n\n\nIf you are a \nadvanced user of Openshift\n already, this course is definitely not for you.\n\n\nIf you are interested in learning docker/container orchestration on \nwindows\n, this course is not ideal for you as it focuses on linux containers.\n\n\nThis is mix course for both developers and operations. If you are looking for a course which is very specific to an audience e.g.  administrators or developers, ask for a custom outline.\n\n\n\n\nWhat will you do as part of this course ?\n\n\nAs part of this course you will,  \n\n\n\n\nGO through the theory to learn what is openshift platform, the core concepts relates and the advantages of using it.\n\n\nInstall and configure a simple(non HA) multi node Openshift cluster  with \nansible\n. You would also have a conceptual understanding of  how to build a production quality cluster with high availability, scalability,  redundancy and  security considerations.\n\n\nLearn how to deploy, configure, interconnect and publish and scale applications as well as isolate those with multi tenant environments that openshift provides and underlying kubernetes primitives that it leverages.  \n\n\nAchieve  \nContinuous Integration and Delivery\n with openshift's integration with git, jenkins and its implicit primitives including builds, pipelines and image streams.  \n\n\nLearn how to manage \npersistent storage\n in a openshift environment\n\n\nLearn about the network and security considerations and features offered by Openshift.\n\n\nLearn openshift \nadministration\n tasks such as setting up quotas, managing memberships, monitoring etc.\n\n\n\n\nWhat is not covered ?\n\n\nEven though this course covers many concepts related to kubernetes, since its a very vast topic, it still has the following areas uncovered.\n\n\n\n\nCloud specific provisioning and integration\n\n\nHA installation  of a kubernetes cluster with multi masters\n\n\nIn depth openshift administration\n\n\nWriting Micro Services Applications\n\n\nAlternate container runtimes e.g. rocker/rkt, runc\n\n\n\n\nPre Requisites\n\n\nFollowing are the pre requisite skills to attend this course. Since its a beginner level course, no prior experience with linux containers is assumed.  \n\n\nCourses\n\n\nYou should have attended the following course, or have demonstrable knowledge with the topics included in the following course.\n\n\n\n\nDocker Fundamentals\n\n\nKubernetes Bootcamp\n\n\n\n\nPre Assessment test will be conducted at the beginning of the course to asses the skills.\n\n\nSkills\n\n\n\n\nDocker  \n\n\nKubernetes\n\n\nLinux/Unix Systems Fundamentals\n\n\nFamiliarity with Command Line Interface (\nCLI\n)\n\n\nFundamental knowledge of editors on linux (any one of vi/nano/emacs)\n\n\nUnderstanding of \nYAML\n syntax and familiarity with reading/writing basic YAML specifications\n\n\nRecommended  to have a basic understanding of Ansible\n\n\n\n\nHardware and Software  Requirements\n\n\nThese are the prerequisites for each attendee.\n\n\n\n\n\n\n\n\nHardware Requirements\n\n\nSoftware Requirements\n\n\n\n\n\n\n\n\n\n\nLaptop/Desktop with high speed internet connection\n\n\nBase Operating System : Windows / Mac OSX\n\n\n\n\n\n\n8 GB RAM\n\n\nVirtualBox\n\n\n\n\n\n\n4 CPU Cores\n\n\nVagrant\n\n\n\n\n\n\n20 GB Disk Space available\n\n\nConEmu (Windows Only)\n\n\n\n\n\n\n\n\nGit for Windows (windows only)\n\n\n\n\n\n\n\n\nminishift\n\n\n\n\n\n\n\n\nLab Setup : Instructions can be found at xxx\n\n\nSupporting Content/Materials\n\n\nFollowing is the supporting material which will be provided to you before/during the course  \n\n\n\n\nSlides (online)  \n\n\nWorkshop (online link)  \n\n\nVideo Course - XXX by School of Devops  \n\n\n\n\nPre Class Checklist\n\n\nAll participants should have completed the following checklist before attending the course .\n\n\n\n\nSuccessfully Completed  \nDocker Fundamentals\n Course, or have equivalent skills.\n\n\nSuccessfully Completed  \nKubernetes Fundamentals\n Course, or have equivalent skills.\n\n\nVerify  your system meets the  hardware pre requisites.\n\n\nValidate the setup : verify all pre requisite software is installed on your system and is functional.\n\n\nJoin our \nkubernetes channel on gitter\n\n\n\n\nTopics\n\n\nFollowing are the topics which would be covered as part of this course. Detailed course outline follows.\n\n\n\n\nIntroduction to Openshift\n\n\nOpenshift Quick Dive\n\n\nApplication Lifecycle Management\n\n\nApplication Stack Mapping\n\n\nContinuous Integration and Delivery\n\n\nDesigning Production Grade Openshift Architecture\n\n\nSetup a Openshift Cluster\n\n\nSecuring Openshift\n\n\nOpenshift Administration\n\n\n\n\nDetailed Course Outline\n\n\nThis is the detailed course outline with day wise list of contents\n\n\nDay I\n\n\nIntroduction and Pre Assessment\n\n\n\n\nTrainer, class and course introduction\n\n\nPre Assessment Test\n\n\n\n\nModule 1: Introduction to Openshift\n\n\n\n\nWhat is Openshift?\n\n\nKubernetes Vs Openshift\n\n\nKey Features\n\n\nArchitecture\n\n\n\n\nModule 2: Openshift Quick Dive\n\n\n\n\nMinishift\n\n\nSetup Minishift\n\n\nCreate a Openshift environment\n\n\nLogin and validate\n\n\n\n\nModule 3: Application Lifecycle Management\n\n\n\n\nProjects\n\n\nTypes of application deployments\n\n\nCatalogue\n\n\nImage\n\n\nImage stream\n\n\nBring your own image\n\n\nYAML files\n\n\n\n\n\n\n\n\nModule 4: Application Stack Mapping\n\n\n\n\nDeployments\n\n\nPods\n\n\nService\n\n\nRoutes\n\n\nConfigMaps\n\n\nSecrets\n\n\nAuto Scaling\n\n\n\n\nModule 5: Continuous Integration and Delivery\n\n\n\n\nImage streams\n\n\nBuilds\n\n\nGit Integration and auto tagging\n\n\nPipelines and Jenkins integration\n\n\nAutomated Delivery\n\n\n\n\nModule 6: Designing Production Grade Openshift Architecture\n\n\n\n\nComponents of Openshift\n\n\netcd\n\n\nMasters and Nodes\n\n\nRegistry\n\n\nWeb console\n\n\n\n\n\n\nAchieving High Availability(HA)\n\n\n\n\nModule 7: Setup a Openshift Cluster\n\n\n\n\nTypes of Openshfit installations\n\n\nProvision nodes\n\n\nInstalling Openshift with Ansible\n\n\nConfiguring inventory\n\n\nDefining variables\n\n\nRun a playbook\n\n\n\n\n\n\nOpenshift Configuration\n\n\nMaster and Node configs\n\n\nAuthentication\n\n\nAuthorization\n\n\n\n\n\n\nNetwork Configuration\n\n\nSDN with OpenVswitch\n\n\nSDN plugins\n\n\nAlternate configs\n\n\nPacket flow\n\n\n\n\n\n\nRegistry Configuration\n\n\nWeb Console Configuration\n\n\nPersistent Storage\n\n\nStorage plugins\n\n\nPV, PVC, Storage Class, etc .,\n\n\n\n\n\n\n\n\nModule 8: Securing Openshift\n\n\n\n\nAuthentication\n\n\nAuthorization\n\n\nRBAC\n\n\nCluster and Local Roles\n\n\nRules and Bindings\n\n\nSSC\n\n\nSecurity Context Constraints\n\n\nSecurity considerations\n\n\n\n\n\n\n\n\nModule 9: Openshift Administration\n\n\n\n\nQuota\n\n\nMemberships\n\n\nMonitoring\n\n\nLogging", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/README/#openshift-bootcamp", 
+            "text": "Duration  2days    Level  Intermediate, Advanced    Modules  10    Flipped Class  No    Customizable  Yes", 
+            "title": "Openshift Bootcamp"
+        }, 
+        {
+            "location": "/README/#objectives", 
+            "text": "This course serves as a accelerator program to understand, setup and master openshift container platform for professionals who already have an understanding of docker and kubernetes.", 
+            "title": "Objectives"
+        }, 
+        {
+            "location": "/README/#who-is-this-for", 
+            "text": "This course is for someone who has already taken docker fundamentals, and kubernetes bootcamp  courses/have equivalent knowledge, and would like to learn how to leverage  Openshift Platform  which is an abstraction on top of it.  If you are a  Operations/Systems  personnel and would like to learn how to build a production grade scalable, fault tolerant and high available openshift infrastructure, and administer it,  this course it for you.  If you are a  developer  and would like to learn how to deploy your application stacks in production, on top of paas solution and also understand the underlying primitives,  this course is for you.  You could be developer/operations personnel and be in charge of securing application infrastructure and setup auxiliary services such as  monitoring, centralized  logging etc. this course is for you.", 
+            "title": "Who is this for ?"
+        }, 
+        {
+            "location": "/README/#who-is-this-not-for", 
+            "text": "If you are a  advanced user of Openshift  already, this course is definitely not for you.  If you are interested in learning docker/container orchestration on  windows , this course is not ideal for you as it focuses on linux containers.  This is mix course for both developers and operations. If you are looking for a course which is very specific to an audience e.g.  administrators or developers, ask for a custom outline.", 
+            "title": "Who is this not for ?"
+        }, 
+        {
+            "location": "/README/#what-will-you-do-as-part-of-this-course", 
+            "text": "As part of this course you will,     GO through the theory to learn what is openshift platform, the core concepts relates and the advantages of using it.  Install and configure a simple(non HA) multi node Openshift cluster  with  ansible . You would also have a conceptual understanding of  how to build a production quality cluster with high availability, scalability,  redundancy and  security considerations.  Learn how to deploy, configure, interconnect and publish and scale applications as well as isolate those with multi tenant environments that openshift provides and underlying kubernetes primitives that it leverages.    Achieve   Continuous Integration and Delivery  with openshift's integration with git, jenkins and its implicit primitives including builds, pipelines and image streams.    Learn how to manage  persistent storage  in a openshift environment  Learn about the network and security considerations and features offered by Openshift.  Learn openshift  administration  tasks such as setting up quotas, managing memberships, monitoring etc.", 
+            "title": "What will you do as part of this course ?"
+        }, 
+        {
+            "location": "/README/#what-is-not-covered", 
+            "text": "Even though this course covers many concepts related to kubernetes, since its a very vast topic, it still has the following areas uncovered.   Cloud specific provisioning and integration  HA installation  of a kubernetes cluster with multi masters  In depth openshift administration  Writing Micro Services Applications  Alternate container runtimes e.g. rocker/rkt, runc", 
+            "title": "What is not covered ?"
+        }, 
+        {
+            "location": "/README/#pre-requisites", 
+            "text": "Following are the pre requisite skills to attend this course. Since its a beginner level course, no prior experience with linux containers is assumed.", 
+            "title": "Pre Requisites"
+        }, 
+        {
+            "location": "/README/#courses", 
+            "text": "You should have attended the following course, or have demonstrable knowledge with the topics included in the following course.   Docker Fundamentals  Kubernetes Bootcamp   Pre Assessment test will be conducted at the beginning of the course to asses the skills.", 
+            "title": "Courses"
+        }, 
+        {
+            "location": "/README/#skills", 
+            "text": "Docker    Kubernetes  Linux/Unix Systems Fundamentals  Familiarity with Command Line Interface ( CLI )  Fundamental knowledge of editors on linux (any one of vi/nano/emacs)  Understanding of  YAML  syntax and familiarity with reading/writing basic YAML specifications  Recommended  to have a basic understanding of Ansible", 
+            "title": "Skills"
+        }, 
+        {
+            "location": "/README/#hardware-and-software-requirements", 
+            "text": "These are the prerequisites for each attendee.     Hardware Requirements  Software Requirements      Laptop/Desktop with high speed internet connection  Base Operating System : Windows / Mac OSX    8 GB RAM  VirtualBox    4 CPU Cores  Vagrant    20 GB Disk Space available  ConEmu (Windows Only)     Git for Windows (windows only)     minishift     Lab Setup : Instructions can be found at xxx", 
+            "title": "Hardware and Software  Requirements"
+        }, 
+        {
+            "location": "/README/#supporting-contentmaterials", 
+            "text": "Following is the supporting material which will be provided to you before/during the course     Slides (online)    Workshop (online link)    Video Course - XXX by School of Devops", 
+            "title": "Supporting Content/Materials"
+        }, 
+        {
+            "location": "/README/#pre-class-checklist", 
+            "text": "All participants should have completed the following checklist before attending the course .   Successfully Completed   Docker Fundamentals  Course, or have equivalent skills.  Successfully Completed   Kubernetes Fundamentals  Course, or have equivalent skills.  Verify  your system meets the  hardware pre requisites.  Validate the setup : verify all pre requisite software is installed on your system and is functional.  Join our  kubernetes channel on gitter", 
+            "title": "Pre Class Checklist"
+        }, 
+        {
+            "location": "/README/#topics", 
+            "text": "Following are the topics which would be covered as part of this course. Detailed course outline follows.   Introduction to Openshift  Openshift Quick Dive  Application Lifecycle Management  Application Stack Mapping  Continuous Integration and Delivery  Designing Production Grade Openshift Architecture  Setup a Openshift Cluster  Securing Openshift  Openshift Administration", 
+            "title": "Topics"
+        }, 
+        {
+            "location": "/README/#detailed-course-outline", 
+            "text": "This is the detailed course outline with day wise list of contents", 
+            "title": "Detailed Course Outline"
+        }, 
+        {
+            "location": "/README/#day-i", 
+            "text": "", 
+            "title": "Day I"
+        }, 
+        {
+            "location": "/README/#introduction-and-pre-assessment", 
+            "text": "Trainer, class and course introduction  Pre Assessment Test", 
+            "title": "Introduction and Pre Assessment"
+        }, 
+        {
+            "location": "/README/#module-1-introduction-to-openshift", 
+            "text": "What is Openshift?  Kubernetes Vs Openshift  Key Features  Architecture", 
+            "title": "Module 1: Introduction to Openshift"
+        }, 
+        {
+            "location": "/README/#module-2-openshift-quick-dive", 
+            "text": "Minishift  Setup Minishift  Create a Openshift environment  Login and validate", 
+            "title": "Module 2: Openshift Quick Dive"
+        }, 
+        {
+            "location": "/README/#module-3-application-lifecycle-management", 
+            "text": "Projects  Types of application deployments  Catalogue  Image  Image stream  Bring your own image  YAML files", 
+            "title": "Module 3: Application Lifecycle Management"
+        }, 
+        {
+            "location": "/README/#module-4-application-stack-mapping", 
+            "text": "Deployments  Pods  Service  Routes  ConfigMaps  Secrets  Auto Scaling", 
+            "title": "Module 4: Application Stack Mapping"
+        }, 
+        {
+            "location": "/README/#module-5-continuous-integration-and-delivery", 
+            "text": "Image streams  Builds  Git Integration and auto tagging  Pipelines and Jenkins integration  Automated Delivery", 
+            "title": "Module 5: Continuous Integration and Delivery"
+        }, 
+        {
+            "location": "/README/#module-6-designing-production-grade-openshift-architecture", 
+            "text": "Components of Openshift  etcd  Masters and Nodes  Registry  Web console    Achieving High Availability(HA)", 
+            "title": "Module 6: Designing Production Grade Openshift Architecture"
+        }, 
+        {
+            "location": "/README/#module-7-setup-a-openshift-cluster", 
+            "text": "Types of Openshfit installations  Provision nodes  Installing Openshift with Ansible  Configuring inventory  Defining variables  Run a playbook    Openshift Configuration  Master and Node configs  Authentication  Authorization    Network Configuration  SDN with OpenVswitch  SDN plugins  Alternate configs  Packet flow    Registry Configuration  Web Console Configuration  Persistent Storage  Storage plugins  PV, PVC, Storage Class, etc .,", 
+            "title": "Module 7: Setup a Openshift Cluster"
+        }, 
+        {
+            "location": "/README/#module-8-securing-openshift", 
+            "text": "Authentication  Authorization  RBAC  Cluster and Local Roles  Rules and Bindings  SSC  Security Context Constraints  Security considerations", 
+            "title": "Module 8: Securing Openshift"
+        }, 
+        {
+            "location": "/README/#module-9-openshift-administration", 
+            "text": "Quota  Memberships  Monitoring  Logging", 
+            "title": "Module 9: Openshift Administration"
+        }, 
+        {
+            "location": "/openshift-bootcamp/", 
+            "text": "Openshift Bootcamp\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDuration\n\n\n2days\n\n\n\n\n\n\nLevel\n\n\nIntermediate, Advanced\n\n\n\n\n\n\nModules\n\n\n10\n\n\n\n\n\n\nFlipped Class\n\n\nNo\n\n\n\n\n\n\nCustomizable\n\n\nYes\n\n\n\n\n\n\n\n\nObjectives\n\n\nThis course serves as a accelerator program to understand, setup and master openshift container platform for professionals who already have an understanding of docker and kubernetes.\n\n\nWho is this for ?\n\n\n\n\nThis course is for someone who has already taken docker fundamentals, and kubernetes bootcamp  courses/have equivalent knowledge, and would like to learn how to leverage \nOpenshift Platform\n which is an abstraction on top of it.\n\n\nIf you are a \nOperations/Systems\n personnel and would like to learn how to build a production grade scalable, fault tolerant and high available openshift infrastructure, and administer it,  this course it for you.\n\n\nIf you are a \ndeveloper\n and would like to learn how to deploy your application stacks in production, on top of paas solution and also understand the underlying primitives,  this course is for you.\n\n\nYou could be developer/operations personnel and be in charge of securing application infrastructure and setup auxiliary services such as  monitoring, centralized  logging etc. this course is for you.\n\n\n\n\nWho is this not for ?\n\n\n\n\nIf you are a \nadvanced user of Openshift\n already, this course is definitely not for you.\n\n\nIf you are interested in learning docker/container orchestration on \nwindows\n, this course is not ideal for you as it focuses on linux containers.\n\n\nThis is mix course for both developers and operations. If you are looking for a course which is very specific to an audience e.g.  administrators or developers, ask for a custom outline.\n\n\n\n\nWhat will you do as part of this course ?\n\n\nAs part of this course you will,  \n\n\n\n\nGO through the theory to learn what is openshift platform, the core concepts relates and the advantages of using it.\n\n\nInstall and configure a simple(non HA) multi node Openshift cluster  with \nansible\n. You would also have a conceptual understanding of  how to build a production quality cluster with high availability, scalability,  redundancy and  security considerations.\n\n\nLearn how to deploy, configure, interconnect and publish and scale applications as well as isolate those with multi tenant environments that openshift provides and underlying kubernetes primitives that it leverages.  \n\n\nAchieve  \nContinuous Integration and Delivery\n with openshift's integration with git, jenkins and its implicit primitives including builds, pipelines and image streams.  \n\n\nLearn how to manage \npersistent storage\n in a openshift environment\n\n\nLearn about the network and security considerations and features offered by Openshift.\n\n\nLearn openshift \nadministration\n tasks such as setting up quotas, managing memberships, monitoring etc.\n\n\n\n\nWhat is not covered ?\n\n\nEven though this course covers many concepts related to kubernetes, since its a very vast topic, it still has the following areas uncovered.\n\n\n\n\nCloud specific provisioning and integration\n\n\nHA installation  of a kubernetes cluster with multi masters\n\n\nIn depth openshift administration\n\n\nWriting Micro Services Applications\n\n\nAlternate container runtimes e.g. rocker/rkt, runc\n\n\n\n\nPre Requisites\n\n\nFollowing are the pre requisite skills to attend this course. Since its a beginner level course, no prior experience with linux containers is assumed.  \n\n\nCourses\n\n\nYou should have attended the following course, or have demonstrable knowledge with the topics included in the following course.\n\n\n\n\nDocker Fundamentals\n\n\nKubernetes Bootcamp\n\n\n\n\nPre Assessment test will be conducted at the beginning of the course to asses the skills.\n\n\nSkills\n\n\n\n\nDocker  \n\n\nKubernetes\n\n\nLinux/Unix Systems Fundamentals\n\n\nFamiliarity with Command Line Interface (\nCLI\n)\n\n\nFundamental knowledge of editors on linux (any one of vi/nano/emacs)\n\n\nUnderstanding of \nYAML\n syntax and familiarity with reading/writing basic YAML specifications\n\n\nRecommended  to have a basic understanding of Ansible\n\n\n\n\nHardware and Software  Requirements\n\n\nThese are the prerequisites for each attendee.\n\n\n\n\n\n\n\n\nHardware Requirements\n\n\nSoftware Requirements\n\n\n\n\n\n\n\n\n\n\nLaptop/Desktop with high speed internet connection\n\n\nBase Operating System : Windows / Mac OSX\n\n\n\n\n\n\n8 GB RAM\n\n\nVirtualBox\n\n\n\n\n\n\n4 CPU Cores\n\n\nVagrant\n\n\n\n\n\n\n20 GB Disk Space available\n\n\nConEmu (Windows Only)\n\n\n\n\n\n\n\n\nGit for Windows (windows only)\n\n\n\n\n\n\n\n\nminishift\n\n\n\n\n\n\n\n\nLab Setup : Instructions can be found at xxx\n\n\nSupporting Content/Materials\n\n\nFollowing is the supporting material which will be provided to you before/during the course  \n\n\n\n\nSlides (online)  \n\n\nWorkshop (online link)  \n\n\nVideo Course - XXX by School of Devops  \n\n\n\n\nPre Class Checklist\n\n\nAll participants should have completed the following checklist before attending the course .\n\n\n\n\nSuccessfully Completed  \nDocker Fundamentals\n Course, or have equivalent skills.\n\n\nSuccessfully Completed  \nKubernetes Fundamentals\n Course, or have equivalent skills.\n\n\nVerify  your system meets the  hardware pre requisites.\n\n\nValidate the setup : verify all pre requisite software is installed on your system and is functional.\n\n\nJoin our \nkubernetes channel on gitter\n\n\n\n\nTopics\n\n\nFollowing are the topics which would be covered as part of this course. Detailed course outline follows.\n\n\n\n\nIntroduction to Openshift\n\n\nOpenshift Quick Dive\n\n\nApplication Lifecycle Management\n\n\nApplication Stack Mapping\n\n\nContinuous Integration and Delivery\n\n\nDesigning Production Grade Openshift Architecture\n\n\nSetup a Openshift Cluster\n\n\nSecuring Openshift\n\n\nOpenshift Administration\n\n\n\n\nDetailed Course Outline\n\n\nThis is the detailed course outline with day wise list of contents\n\n\nDay I\n\n\nIntroduction and Pre Assessment\n\n\n\n\nTrainer, class and course introduction\n\n\nPre Assessment Test\n\n\n\n\nModule 1: Introduction to Openshift\n\n\n\n\nWhat is Openshift?\n\n\nKubernetes Vs Openshift\n\n\nKey Features\n\n\nArchitecture\n\n\n\n\nModule 2: Openshift Quick Dive\n\n\n\n\nMinishift\n\n\nSetup Minishift\n\n\nCreate a Openshift environment\n\n\nLogin and validate\n\n\n\n\nModule 3: Application Lifecycle Management\n\n\n\n\nProjects\n\n\nTypes of application deployments\n\n\nCatalogue\n\n\nImage\n\n\nImage stream\n\n\nBring your own image\n\n\nYAML files\n\n\n\n\n\n\n\n\nModule 4: Application Stack Mapping\n\n\n\n\nDeployments\n\n\nPods\n\n\nService\n\n\nRoutes\n\n\nConfigMaps\n\n\nSecrets\n\n\nAuto Scaling\n\n\n\n\nModule 5: Continuous Integration and Delivery\n\n\n\n\nImage streams\n\n\nBuilds\n\n\nGit Integration and auto tagging\n\n\nPipelines and Jenkins integration\n\n\nAutomated Delivery\n\n\n\n\nModule 6: Designing Production Grade Openshift Architecture\n\n\n\n\nComponents of Openshift\n\n\netcd\n\n\nMasters and Nodes\n\n\nRegistry\n\n\nWeb console\n\n\n\n\n\n\nAchieving High Availability(HA)\n\n\n\n\nModule 7: Setup a Openshift Cluster\n\n\n\n\nTypes of Openshfit installations\n\n\nProvision nodes\n\n\nInstalling Openshift with Ansible\n\n\nConfiguring inventory\n\n\nDefining variables\n\n\nRun a playbook\n\n\n\n\n\n\nOpenshift Configuration\n\n\nMaster and Node configs\n\n\nAuthentication\n\n\nAuthorization\n\n\n\n\n\n\nNetwork Configuration\n\n\nSDN with OpenVswitch\n\n\nSDN plugins\n\n\nAlternate configs\n\n\nPacket flow\n\n\n\n\n\n\nRegistry Configuration\n\n\nWeb Console Configuration\n\n\nPersistent Storage\n\n\nStorage plugins\n\n\nPV, PVC, Storage Class, etc .,\n\n\n\n\n\n\n\n\nModule 8: Securing Openshift\n\n\n\n\nAuthentication\n\n\nAuthorization\n\n\nRBAC\n\n\nCluster and Local Roles\n\n\nRules and Bindings\n\n\nSSC\n\n\nSecurity Context Constraints\n\n\nSecurity considerations\n\n\n\n\n\n\n\n\nModule 9: Openshift Administration\n\n\n\n\nQuota\n\n\nMemberships\n\n\nMonitoring\n\n\nLogging", 
+            "title": "About the Course"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#openshift-bootcamp", 
+            "text": "Duration  2days    Level  Intermediate, Advanced    Modules  10    Flipped Class  No    Customizable  Yes", 
+            "title": "Openshift Bootcamp"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#objectives", 
+            "text": "This course serves as a accelerator program to understand, setup and master openshift container platform for professionals who already have an understanding of docker and kubernetes.", 
+            "title": "Objectives"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#who-is-this-for", 
+            "text": "This course is for someone who has already taken docker fundamentals, and kubernetes bootcamp  courses/have equivalent knowledge, and would like to learn how to leverage  Openshift Platform  which is an abstraction on top of it.  If you are a  Operations/Systems  personnel and would like to learn how to build a production grade scalable, fault tolerant and high available openshift infrastructure, and administer it,  this course it for you.  If you are a  developer  and would like to learn how to deploy your application stacks in production, on top of paas solution and also understand the underlying primitives,  this course is for you.  You could be developer/operations personnel and be in charge of securing application infrastructure and setup auxiliary services such as  monitoring, centralized  logging etc. this course is for you.", 
+            "title": "Who is this for ?"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#who-is-this-not-for", 
+            "text": "If you are a  advanced user of Openshift  already, this course is definitely not for you.  If you are interested in learning docker/container orchestration on  windows , this course is not ideal for you as it focuses on linux containers.  This is mix course for both developers and operations. If you are looking for a course which is very specific to an audience e.g.  administrators or developers, ask for a custom outline.", 
+            "title": "Who is this not for ?"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#what-will-you-do-as-part-of-this-course", 
+            "text": "As part of this course you will,     GO through the theory to learn what is openshift platform, the core concepts relates and the advantages of using it.  Install and configure a simple(non HA) multi node Openshift cluster  with  ansible . You would also have a conceptual understanding of  how to build a production quality cluster with high availability, scalability,  redundancy and  security considerations.  Learn how to deploy, configure, interconnect and publish and scale applications as well as isolate those with multi tenant environments that openshift provides and underlying kubernetes primitives that it leverages.    Achieve   Continuous Integration and Delivery  with openshift's integration with git, jenkins and its implicit primitives including builds, pipelines and image streams.    Learn how to manage  persistent storage  in a openshift environment  Learn about the network and security considerations and features offered by Openshift.  Learn openshift  administration  tasks such as setting up quotas, managing memberships, monitoring etc.", 
+            "title": "What will you do as part of this course ?"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#what-is-not-covered", 
+            "text": "Even though this course covers many concepts related to kubernetes, since its a very vast topic, it still has the following areas uncovered.   Cloud specific provisioning and integration  HA installation  of a kubernetes cluster with multi masters  In depth openshift administration  Writing Micro Services Applications  Alternate container runtimes e.g. rocker/rkt, runc", 
+            "title": "What is not covered ?"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#pre-requisites", 
+            "text": "Following are the pre requisite skills to attend this course. Since its a beginner level course, no prior experience with linux containers is assumed.", 
+            "title": "Pre Requisites"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#courses", 
+            "text": "You should have attended the following course, or have demonstrable knowledge with the topics included in the following course.   Docker Fundamentals  Kubernetes Bootcamp   Pre Assessment test will be conducted at the beginning of the course to asses the skills.", 
+            "title": "Courses"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#skills", 
+            "text": "Docker    Kubernetes  Linux/Unix Systems Fundamentals  Familiarity with Command Line Interface ( CLI )  Fundamental knowledge of editors on linux (any one of vi/nano/emacs)  Understanding of  YAML  syntax and familiarity with reading/writing basic YAML specifications  Recommended  to have a basic understanding of Ansible", 
+            "title": "Skills"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#hardware-and-software-requirements", 
+            "text": "These are the prerequisites for each attendee.     Hardware Requirements  Software Requirements      Laptop/Desktop with high speed internet connection  Base Operating System : Windows / Mac OSX    8 GB RAM  VirtualBox    4 CPU Cores  Vagrant    20 GB Disk Space available  ConEmu (Windows Only)     Git for Windows (windows only)     minishift     Lab Setup : Instructions can be found at xxx", 
+            "title": "Hardware and Software  Requirements"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#supporting-contentmaterials", 
+            "text": "Following is the supporting material which will be provided to you before/during the course     Slides (online)    Workshop (online link)    Video Course - XXX by School of Devops", 
+            "title": "Supporting Content/Materials"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#pre-class-checklist", 
+            "text": "All participants should have completed the following checklist before attending the course .   Successfully Completed   Docker Fundamentals  Course, or have equivalent skills.  Successfully Completed   Kubernetes Fundamentals  Course, or have equivalent skills.  Verify  your system meets the  hardware pre requisites.  Validate the setup : verify all pre requisite software is installed on your system and is functional.  Join our  kubernetes channel on gitter", 
+            "title": "Pre Class Checklist"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#topics", 
+            "text": "Following are the topics which would be covered as part of this course. Detailed course outline follows.   Introduction to Openshift  Openshift Quick Dive  Application Lifecycle Management  Application Stack Mapping  Continuous Integration and Delivery  Designing Production Grade Openshift Architecture  Setup a Openshift Cluster  Securing Openshift  Openshift Administration", 
+            "title": "Topics"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#detailed-course-outline", 
+            "text": "This is the detailed course outline with day wise list of contents", 
+            "title": "Detailed Course Outline"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#day-i", 
+            "text": "", 
+            "title": "Day I"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#introduction-and-pre-assessment", 
+            "text": "Trainer, class and course introduction  Pre Assessment Test", 
+            "title": "Introduction and Pre Assessment"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-1-introduction-to-openshift", 
+            "text": "What is Openshift?  Kubernetes Vs Openshift  Key Features  Architecture", 
+            "title": "Module 1: Introduction to Openshift"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-2-openshift-quick-dive", 
+            "text": "Minishift  Setup Minishift  Create a Openshift environment  Login and validate", 
+            "title": "Module 2: Openshift Quick Dive"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-3-application-lifecycle-management", 
+            "text": "Projects  Types of application deployments  Catalogue  Image  Image stream  Bring your own image  YAML files", 
+            "title": "Module 3: Application Lifecycle Management"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-4-application-stack-mapping", 
+            "text": "Deployments  Pods  Service  Routes  ConfigMaps  Secrets  Auto Scaling", 
+            "title": "Module 4: Application Stack Mapping"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-5-continuous-integration-and-delivery", 
+            "text": "Image streams  Builds  Git Integration and auto tagging  Pipelines and Jenkins integration  Automated Delivery", 
+            "title": "Module 5: Continuous Integration and Delivery"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-6-designing-production-grade-openshift-architecture", 
+            "text": "Components of Openshift  etcd  Masters and Nodes  Registry  Web console    Achieving High Availability(HA)", 
+            "title": "Module 6: Designing Production Grade Openshift Architecture"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-7-setup-a-openshift-cluster", 
+            "text": "Types of Openshfit installations  Provision nodes  Installing Openshift with Ansible  Configuring inventory  Defining variables  Run a playbook    Openshift Configuration  Master and Node configs  Authentication  Authorization    Network Configuration  SDN with OpenVswitch  SDN plugins  Alternate configs  Packet flow    Registry Configuration  Web Console Configuration  Persistent Storage  Storage plugins  PV, PVC, Storage Class, etc .,", 
+            "title": "Module 7: Setup a Openshift Cluster"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-8-securing-openshift", 
+            "text": "Authentication  Authorization  RBAC  Cluster and Local Roles  Rules and Bindings  SSC  Security Context Constraints  Security considerations", 
+            "title": "Module 8: Securing Openshift"
+        }, 
+        {
+            "location": "/openshift-bootcamp/#module-9-openshift-administration", 
+            "text": "Quota  Memberships  Monitoring  Logging", 
+            "title": "Module 9: Openshift Administration"
+        }, 
+        {
+            "location": "/configs/", 
+            "text": "In this lesson we are going to cover the following topics\n\n\n\n\nLogging in\n\n\nDisaply Config\n\n\nCreate a project\n\n\n\n\nLogging in\n\n\noc login\n\n\n\n\n\nListing Configurations\n\n\nCheck current config\n\n\noc get projects\noc status\n\n\n\n\nCreating a project for voting app\n\n\nProjects offers separation of resources running on the same physical infrastructure into virtual clusters. It is typically useful in mid to large scale environments with multiple projects, teams and need separate scopes.\n\n\nLets create a namespace called \nvote\n  \n\n\noc new-project voting\n\n\n\n\nTo create namespace\n\n\nNow using project \nvoting\n on server \nhttps://192.168.64.2:8443\n.\n\nYou can add applications to this project with the 'new-app' command. For example, try:\n\n    oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git\n\nto build a new example application in Ruby.", 
+            "title": "Configuring Cluster"
+        }, 
+        {
+            "location": "/configs/#logging-in", 
+            "text": "oc login", 
+            "title": "Logging in"
+        }, 
+        {
+            "location": "/configs/#listing-configurations", 
+            "text": "Check current config  oc get projects\noc status", 
+            "title": "Listing Configurations"
+        }, 
+        {
+            "location": "/configs/#creating-a-project-for-voting-app", 
+            "text": "Projects offers separation of resources running on the same physical infrastructure into virtual clusters. It is typically useful in mid to large scale environments with multiple projects, teams and need separate scopes.  Lets create a namespace called  vote     oc new-project voting  To create namespace  Now using project  voting  on server  https://192.168.64.2:8443 .\n\nYou can add applications to this project with the 'new-app' command. For example, try:\n\n    oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git\n\nto build a new example application in Ruby.", 
+            "title": "Creating a project for voting app"
+        }, 
+        {
+            "location": "/deploying_pods/", 
+            "text": "Deploying Pods\n\n\nLife of a pod\n\n\n\n\nPending : in progress\n\n\nRunning\n\n\nSucceeded : successfully exited\n\n\nFailed\n\n\nUnknown\n\n\n\n\nProbes\n\n\n\n\nlivenessProbe : Containers are Alive\n\n\nreadinessProbe : Ready to Serve Traffic\n\n\n\n\nResource Configs\n\n\nEach entity created with kubernetes is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.\n\n\nAKMS\n =\n Resource Configs Specs\n\n\napiVersion: v1\nkind:\nmetadata:\nspec:\n\n\n\n\nSpec Schema: https://kubernetes.io/docs/user-guide/pods/multi-container/\n\n\nCommon Configurations\n\n\nThrougout this tutorial, we would be deploying differnt components of  example voting application. Lets assume we are deploying it in a \ndev\n environment.  Lets create the common specs for this app with the AKMS schema discussed above.\n\n\nfile: common.yml\n\n\napiVersion: v1\nkind:\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:\n\n\n\n\nLets now create the  Pod config by adding the kind and specs to above schema.\n\n\nFilename: vote-pod.yaml\n\n\napiVersion: v1\nkind: Pod\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: vote\n      image: schoolofdevops/vote:latest\n      ports:\n        - containerPort: 80\n\n\n\n\nLaunching and operating a Pod\n\n\nSyntax:\n\n\n oc apply -f FILE\n\n\n\n\nTo Launch pod using configs above,\n\n\noc apply -f vote-pod.yaml\n\n\n\n\n\nTo view pods\n\n\noc get pods\n\noc get pods vote\n\n\n\n\nTo get detailed info\n\n\noc describe pods vote\n\n\n\n\n[Output:]\n\n\nName:           vote\nNamespace:      default\nNode:           kube-3/192.168.0.80\nStart Time:     Tue, 07 Feb 2017 16:16:40 +0000\nLabels:         app=voting\nStatus:         Running\nIP:             10.40.0.2\nControllers:    \nnone\n\nContainers:\n  vote:\n    Container ID:       docker://48304b35b9457d627b341e424228a725d05c2ed97cc9970bbff32a1b365d9a5d\n    Image:              schoolofdevops/vote:latest\n    Image ID:           docker-pullable://schoolofdevops/vote@sha256:3d89bfc1993d4630a58b831a6d44ef73d2be76a7862153e02e7a7c0cf2936731\n    Port:               80/TCP\n    State:              Running\n      Started:          Tue, 07 Feb 2017 16:16:52 +0000\n    Ready:              True\n    Restart Count:      0\n    Volume Mounts:\n      /var/run/secrets/kubernetes.io/serviceaccount from default-token-2n6j1 (ro)\n    Environment Variables:      \nnone\n\nConditions:\n  Type          Status\n  Initialized   True\n  Ready         True\n  PodScheduled  True\nVolumes:\n  default-token-2n6j1:\n    Type:       Secret (a volume populated by a Secret)\n    SecretName: default-token-2n6j1\nQoS Class:      BestEffort\nTolerations:    \nnone\n\nEvents:\n  FirstSeen     LastSeen        Count   From                    SubObjectPath           Type            Reason          Message\n  ---------     --------        -----   ----                    -------------           --------        ------          -------\n  21s           21s             1       {default-scheduler }                            Normal          Scheduled       Successfully assigned vote to kube-3\n  20s           20s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulling         pulling image \nschoolofdevops/vote:latest\n\n  10s           10s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulled          Successfully pulled image \nschoolofdevops/vote:latest\n\n  9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Created         Created container with docker id 48304b35b945; Security:[seccomp=unconfined]\n  9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Started         Started container with docker id 48304b35b945\n\n\n\n\nCommands to operate the pod\n\n\noc exec -it vote ps sh\n\noc exec -it vote  sh\n\noc logs vote\n\n\n\n\n\ndelete\n\n\noc delete pod vote\n\noc get pods\n\n\n\n\nAttach a Volume to the Pod\n\n\nLets create a pod for database and attach a volume to it. To achieve this we will need to\n\n\n\n\ncreate a \nvolumes\n definition\n\n\nattach volume to container using \nVolumeMounts\n property\n\n\n\n\nVolumes are of two types:\n  * emptyDir\n  * hostPath\n\n\nFile: db-pod.yaml\n\n\napiVersion: v1\nkind: Pod\nmetadata:\n  name: db\n  labels:\n    app: postgres\n    role: database\n    tier: back\nspec:\n  containers:\n    - name: db\n      image: postgres:9.4\n      ports:\n        - containerPort: 5432\n      volumeMounts:\n      - name: db-data\n        mountPath: /var/lib/postgresql/data\n  volumes:\n  - name: db-data\n    emptyDir: {}\n\n\n\n\n\nTo create this pod,\n\n\noc apply -f db-pod.yaml\n\noc describe pod db\n\noc get events\n\n\n\n\nSelecting Node to run on\n\n\noc get nodes --show-labels\n\noc label nodes \nnode-name\n rack=1\n\noc get nodes --show-labels\n\n\n\n\n\nUpdate pod definition with nodeSelector\n\n\nfile: vote-pod.yml\n\n\napiVersion: v1\nkind: Pod\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: vote\n      image: schoolofdevops/vote:latest\n      ports:\n        - containerPort: 80\n  nodeSelector:\n    rack: '1'\n\n\n\n\nFor this change, pod needs to be re created.\n\n\noc apply -f vote-pod.yaml\n\n\n\n\nCreating Multi Container Pods\n\n\nfile: multi_container_pod.yml\n\n\napiVersion: v1\nkind: Pod\nmetadata:\n  name: web\n  labels:\n    app: nginx\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: nginx\n      image: nginx\n      ports:\n        - containerPort: 80\n      volumeMounts:\n      - name: data\n        mountPath: /opt/d1\n    - name: loop\n      image: schoolofdevops/loop\n      volumeMounts:\n      - name: data\n        mountPath: /opt/d1\n  volumes:\n  - name: data\n    emptyDir: {}\n\n\n\n\nTo create this pod\n\n\noc apply -f multi_container_pod.yml\n\n\n\n\nCheck Status\n\n\nroot@kube-01:~# oc get pods\nNAME      READY     STATUS              RESTARTS   AGE\nnginx     0/2       ContainerCreating   0          7s\nvote      1/1       Running             0          3m\n\n\n\n\nChecking logs, logging in\n\n\noc logs  web  -c synch\noc logs  web  -c nginx\n\noc exec -it web  sh  -c nginx\noc exec -it web  sh  -c synch\n\n\n\n\n\nExercise\n\n\nCreate a pod definition for redis and deploy.\n\n\nReading List :\n\n\nNode Selectors, Affinity\nhttps://kubernetes.io/docs/concepts/configuration/assign-pod-node/", 
+            "title": "Launching Pods"
+        }, 
+        {
+            "location": "/deploying_pods/#deploying-pods", 
+            "text": "Life of a pod   Pending : in progress  Running  Succeeded : successfully exited  Failed  Unknown", 
+            "title": "Deploying Pods"
+        }, 
+        {
+            "location": "/deploying_pods/#probes", 
+            "text": "livenessProbe : Containers are Alive  readinessProbe : Ready to Serve Traffic", 
+            "title": "Probes"
+        }, 
+        {
+            "location": "/deploying_pods/#resource-configs", 
+            "text": "Each entity created with kubernetes is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.  AKMS  =  Resource Configs Specs  apiVersion: v1\nkind:\nmetadata:\nspec:  Spec Schema: https://kubernetes.io/docs/user-guide/pods/multi-container/", 
+            "title": "Resource Configs"
+        }, 
+        {
+            "location": "/deploying_pods/#common-configurations", 
+            "text": "Througout this tutorial, we would be deploying differnt components of  example voting application. Lets assume we are deploying it in a  dev  environment.  Lets create the common specs for this app with the AKMS schema discussed above.  file: common.yml  apiVersion: v1\nkind:\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:  Lets now create the  Pod config by adding the kind and specs to above schema.  Filename: vote-pod.yaml  apiVersion: v1\nkind: Pod\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: vote\n      image: schoolofdevops/vote:latest\n      ports:\n        - containerPort: 80", 
+            "title": "Common Configurations"
+        }, 
+        {
+            "location": "/deploying_pods/#launching-and-operating-a-pod", 
+            "text": "Syntax:   oc apply -f FILE  To Launch pod using configs above,  oc apply -f vote-pod.yaml  To view pods  oc get pods\n\noc get pods vote  To get detailed info  oc describe pods vote  [Output:]  Name:           vote\nNamespace:      default\nNode:           kube-3/192.168.0.80\nStart Time:     Tue, 07 Feb 2017 16:16:40 +0000\nLabels:         app=voting\nStatus:         Running\nIP:             10.40.0.2\nControllers:     none \nContainers:\n  vote:\n    Container ID:       docker://48304b35b9457d627b341e424228a725d05c2ed97cc9970bbff32a1b365d9a5d\n    Image:              schoolofdevops/vote:latest\n    Image ID:           docker-pullable://schoolofdevops/vote@sha256:3d89bfc1993d4630a58b831a6d44ef73d2be76a7862153e02e7a7c0cf2936731\n    Port:               80/TCP\n    State:              Running\n      Started:          Tue, 07 Feb 2017 16:16:52 +0000\n    Ready:              True\n    Restart Count:      0\n    Volume Mounts:\n      /var/run/secrets/kubernetes.io/serviceaccount from default-token-2n6j1 (ro)\n    Environment Variables:       none \nConditions:\n  Type          Status\n  Initialized   True\n  Ready         True\n  PodScheduled  True\nVolumes:\n  default-token-2n6j1:\n    Type:       Secret (a volume populated by a Secret)\n    SecretName: default-token-2n6j1\nQoS Class:      BestEffort\nTolerations:     none \nEvents:\n  FirstSeen     LastSeen        Count   From                    SubObjectPath           Type            Reason          Message\n  ---------     --------        -----   ----                    -------------           --------        ------          -------\n  21s           21s             1       {default-scheduler }                            Normal          Scheduled       Successfully assigned vote to kube-3\n  20s           20s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulling         pulling image  schoolofdevops/vote:latest \n  10s           10s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulled          Successfully pulled image  schoolofdevops/vote:latest \n  9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Created         Created container with docker id 48304b35b945; Security:[seccomp=unconfined]\n  9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Started         Started container with docker id 48304b35b945  Commands to operate the pod  oc exec -it vote ps sh\n\noc exec -it vote  sh\n\noc logs vote  delete  oc delete pod vote\n\noc get pods", 
+            "title": "Launching and operating a Pod"
+        }, 
+        {
+            "location": "/deploying_pods/#attach-a-volume-to-the-pod", 
+            "text": "Lets create a pod for database and attach a volume to it. To achieve this we will need to   create a  volumes  definition  attach volume to container using  VolumeMounts  property   Volumes are of two types:\n  * emptyDir\n  * hostPath  File: db-pod.yaml  apiVersion: v1\nkind: Pod\nmetadata:\n  name: db\n  labels:\n    app: postgres\n    role: database\n    tier: back\nspec:\n  containers:\n    - name: db\n      image: postgres:9.4\n      ports:\n        - containerPort: 5432\n      volumeMounts:\n      - name: db-data\n        mountPath: /var/lib/postgresql/data\n  volumes:\n  - name: db-data\n    emptyDir: {}  To create this pod,  oc apply -f db-pod.yaml\n\noc describe pod db\n\noc get events", 
+            "title": "Attach a Volume to the Pod"
+        }, 
+        {
+            "location": "/deploying_pods/#selecting-node-to-run-on", 
+            "text": "oc get nodes --show-labels\n\noc label nodes  node-name  rack=1\n\noc get nodes --show-labels  Update pod definition with nodeSelector  file: vote-pod.yml  apiVersion: v1\nkind: Pod\nmetadata:\n  name: vote\n  labels:\n    app: vote\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: vote\n      image: schoolofdevops/vote:latest\n      ports:\n        - containerPort: 80\n  nodeSelector:\n    rack: '1'  For this change, pod needs to be re created.  oc apply -f vote-pod.yaml", 
+            "title": "Selecting Node to run on"
+        }, 
+        {
+            "location": "/deploying_pods/#creating-multi-container-pods", 
+            "text": "file: multi_container_pod.yml  apiVersion: v1\nkind: Pod\nmetadata:\n  name: web\n  labels:\n    app: nginx\n    role: ui\n    tier: front\nspec:\n  containers:\n    - name: nginx\n      image: nginx\n      ports:\n        - containerPort: 80\n      volumeMounts:\n      - name: data\n        mountPath: /opt/d1\n    - name: loop\n      image: schoolofdevops/loop\n      volumeMounts:\n      - name: data\n        mountPath: /opt/d1\n  volumes:\n  - name: data\n    emptyDir: {}  To create this pod  oc apply -f multi_container_pod.yml  Check Status  root@kube-01:~# oc get pods\nNAME      READY     STATUS              RESTARTS   AGE\nnginx     0/2       ContainerCreating   0          7s\nvote      1/1       Running             0          3m  Checking logs, logging in  oc logs  web  -c synch\noc logs  web  -c nginx\n\noc exec -it web  sh  -c nginx\noc exec -it web  sh  -c synch", 
+            "title": "Creating Multi Container Pods"
+        }, 
+        {
+            "location": "/deploying_pods/#exercise", 
+            "text": "Create a pod definition for redis and deploy.", 
+            "title": "Exercise"
+        }, 
+        {
+            "location": "/deploying_pods/#reading-list", 
+            "text": "Node Selectors, Affinity\nhttps://kubernetes.io/docs/concepts/configuration/assign-pod-node/", 
+            "title": "Reading List :"
+        }, 
+        {
+            "location": "/2. kubernetes_deployment/", 
+            "text": "Creating a Deployment\n\n\nA Deployment is a higher level abstraction which sits on top of replica sets and allows you to manage the way applications are deployed, rolled back at a controlled rate.\n\n\nTopics  \n\n  * Rollout a Replicaset\n\n  * Deploy a new version : Creates a new replica set every time, moves pods from RS(n) to RS(n+1)\n\n  * Rollback to previous RS    \n\n  * Auto Scaling\n\n  * Pause Deployments  \n\n\nFile: vote-deploy.yaml\n\n\napiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: vote\n  namespace: dev\nspec:\n  replicas: 8\n  selector:\n    matchLabels:\n      tier: front\n      app: vote\n    matchExpressions:\n      - {key: tier, operator: In, values: [front]}\n  revisionHistoryLimit: 4\n  strategy:\n    type: RollingUpdate\n    rollingUpdate:\n      maxUnavailable: 1\n      maxSurge: 2\n  minReadySeconds: 20\n  paused: false\n  template:\n    metadata:\n      labels:\n        app: vote\n        role: ui\n        tier: front\n    spec:\n      containers:\n      - image: schoolofdevops/vote\n        imagePullPolicy: Always\n        name: vote\n        ports:\n        - containerPort: 80\n          protocol: TCP\n\n\n\n\nDeployment spec (deployment.spec) contains the following,\n\n\n\n\nreplicaset specs\n\n\nselectors  \n\n\nreplicas  \n\n\n\n\n\n\ndeployment spec\n\n\nstrategy\n\n\nrollingUpdate\n\n\nminReadySeconds\n\n\n\n\n\n\npod template\n\n\nmetadata, labels\n\n\ncontainer specs\n\n\n\n\n\n\n\n\nLets  create the Deployment\n\n\noc apply -f vote_deploy.yaml --record\n\n\n\n\nNow that the deployment is created. To validate,\n\n\noc get deployment\noc get rs\noc rollout status deployment/vote\noc get pods --show-labels\n\n\n\n\nSample Output\n\n\noc get deployments\nNAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE\nvote   3         3         3            1           3m\n\n\n\n\nScaling a deployment\n\n\nTo scale a deployment in Kubernetes:\n\n\noc scale deployment/vote --replicas=5\n\n\n\n\nSample output:\n\n\noc scale deployment/vote --replicas=5\ndeployment \nvote\n scaled", 
+            "title": "Creating Deployments"
+        }, 
+        {
+            "location": "/2. kubernetes_deployment/#creating-a-deployment", 
+            "text": "A Deployment is a higher level abstraction which sits on top of replica sets and allows you to manage the way applications are deployed, rolled back at a controlled rate.  Topics   \n  * Rollout a Replicaset \n  * Deploy a new version : Creates a new replica set every time, moves pods from RS(n) to RS(n+1) \n  * Rollback to previous RS     \n  * Auto Scaling \n  * Pause Deployments    File: vote-deploy.yaml  apiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: vote\n  namespace: dev\nspec:\n  replicas: 8\n  selector:\n    matchLabels:\n      tier: front\n      app: vote\n    matchExpressions:\n      - {key: tier, operator: In, values: [front]}\n  revisionHistoryLimit: 4\n  strategy:\n    type: RollingUpdate\n    rollingUpdate:\n      maxUnavailable: 1\n      maxSurge: 2\n  minReadySeconds: 20\n  paused: false\n  template:\n    metadata:\n      labels:\n        app: vote\n        role: ui\n        tier: front\n    spec:\n      containers:\n      - image: schoolofdevops/vote\n        imagePullPolicy: Always\n        name: vote\n        ports:\n        - containerPort: 80\n          protocol: TCP  Deployment spec (deployment.spec) contains the following,   replicaset specs  selectors    replicas      deployment spec  strategy  rollingUpdate  minReadySeconds    pod template  metadata, labels  container specs     Lets  create the Deployment  oc apply -f vote_deploy.yaml --record  Now that the deployment is created. To validate,  oc get deployment\noc get rs\noc rollout status deployment/vote\noc get pods --show-labels  Sample Output  oc get deployments\nNAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE\nvote   3         3         3            1           3m", 
+            "title": "Creating a Deployment"
+        }, 
+        {
+            "location": "/2. kubernetes_deployment/#scaling-a-deployment", 
+            "text": "To scale a deployment in Kubernetes:  oc scale deployment/vote --replicas=5  Sample output:  oc scale deployment/vote --replicas=5\ndeployment  vote  scaled", 
+            "title": "Scaling a deployment"
+        }, 
+        {
+            "location": "/exposing_app_with_service/", 
+            "text": "Exposing Application with  a Service\n\n\nTypes of Services:\n  * ClusterIP\n  * NodePort\n  * LoadBalancer\n  * ExternalName\n\n\noc get pods\noc get svc\n\n\n\n\nSample Output:\n\n\nNAME                READY     STATUS    RESTARTS   AGE\nvoting-appp-1j52x   1/1       Running   0          12m\nvoting-appp-pr2xz   1/1       Running   0          9m\nvoting-appp-qpxbm   1/1       Running   0          15m\n\n\n\n\nFilename: vote-svc.yaml\n\n\n---\napiVersion: v1\nkind: Service\nmetadata:\n  labels:\n    role: svc\n    tier: front\n  name: vote-svc\n  namespace: dev\nspec:\n  selector:\n    app: vote\n  ports:\n  - port: 80\n    protocol: TCP\n    targetPort: 80\n  type: NodePort\n\n\n\n\nSave the file.\n\n\nNow to create a service:\n\n\noc create -f vote_svc.yaml\noc get svc\n\n\n\n\nNow to check which port the pod is connected\n\n\noc describe service vote-svc\n\n\n\n\nCheck for the Nodeport here\n\n\nSample Output\n\n\nName:                   vote-svc\nNamespace:              dev\nLabels:                 app=vote\nSelector:               app=vote\nType:                   NodePort\nIP:                     10.99.147.158\nPort:                   \nunset\n 80/TCP\nNodePort:               \nunset\n 30308/TCP\nEndpoints:              10.40.0.2:80,10.40.0.3:80,10.40.0.4:80 + 1 more...\nSession Affinity:       None\nNo events.\n\n\n\n\nGo to browser and check hostip:NodePort\n\n\nHere the node port is 30308.\n\n\nSample output will be:", 
+            "title": "Service Endpoints"
+        }, 
+        {
+            "location": "/exposing_app_with_service/#exposing-application-with-a-service", 
+            "text": "Types of Services:\n  * ClusterIP\n  * NodePort\n  * LoadBalancer\n  * ExternalName  oc get pods\noc get svc  Sample Output:  NAME                READY     STATUS    RESTARTS   AGE\nvoting-appp-1j52x   1/1       Running   0          12m\nvoting-appp-pr2xz   1/1       Running   0          9m\nvoting-appp-qpxbm   1/1       Running   0          15m  Filename: vote-svc.yaml  ---\napiVersion: v1\nkind: Service\nmetadata:\n  labels:\n    role: svc\n    tier: front\n  name: vote-svc\n  namespace: dev\nspec:\n  selector:\n    app: vote\n  ports:\n  - port: 80\n    protocol: TCP\n    targetPort: 80\n  type: NodePort  Save the file.  Now to create a service:  oc create -f vote_svc.yaml\noc get svc  Now to check which port the pod is connected  oc describe service vote-svc  Check for the Nodeport here  Sample Output  Name:                   vote-svc\nNamespace:              dev\nLabels:                 app=vote\nSelector:               app=vote\nType:                   NodePort\nIP:                     10.99.147.158\nPort:                    unset  80/TCP\nNodePort:                unset  30308/TCP\nEndpoints:              10.40.0.2:80,10.40.0.3:80,10.40.0.4:80 + 1 more...\nSession Affinity:       None\nNo events.  Go to browser and check hostip:NodePort  Here the node port is 30308.  Sample output will be:", 
+            "title": "Exposing Application with  a Service"
+        }, 
+        {
+            "location": "/rollouts-and-rollbacks/", 
+            "text": "Rolling updates with deployments\n\n\nUpdate the version of the image in vote_deploy.yaml\n\n\nFile: vote_deploy.yaml\n\n\n...\n    app: vote\n    spec:\n      containers:\n      - image: schoolofdevops/vote:movies\n\n\n\n\n\nApply Changes and monitor the rollout\n\n\noc apply -f vote-deploy.yaml\noc rollout status deployment/vote\n\n\n\n\nRolling Back a Failed Update\n\n\nLets update the image to a tag which is non existant. We intentionally introduce this intentional error to fail fail the deployment.\n\n\nFile: vote_deploy.yaml\n\n\n...\n    app: vote\n    spec:\n      containers:\n      - image: schoolofdevops/vote:movi\n\n\n\n\n\nDo a new rollout and monitor\n\n\noc apply -f vote_deploy.yaml\noc rollout status deployment/vote\n\n\n\n\nAlso watch the pod status which might look like\n\n\nvote-3040199436-sdq17   1/1       Running            0          9m\nvote-4086029260-0vjjb   0/1       ErrImagePull       0          16s\nvote-4086029260-zvgmd   0/1       ImagePullBackOff   0          15s\nvote-rc-fsdsd               1/1       Running            0          27m\nvote-rc-mcxs5               1/1       Running            0\n\n\n\n\nTo get the revision history and details  \n\n\noc rollout history deployment/vote\noc rollout history deployment/vote --revision=x\n[replace x with the latest revision]\n\n\n\n\n[Sample Output]\n\n\nroot@kube-01:~# oc rollout history deployment/vote\ndeployments \nvote\n\nREVISION    CHANGE-CAUSE\n1       oc scale deployment/vote --replicas=5\n3       \nnone\n\n6       \nnone\n\n7       \nnone\n\n\nroot@kube-01:~# oc rollout history deployment/vote --revision=7\ndeployments \nvote\n with revision #7\nPod Template:\n  Labels:   app=vote\n    env=dev\n    pod-template-hash=4086029260\n    role=ui\n    stack=voting\n    tier=front\n  Containers:\n   vote:\n    Image:  schoolofdevops/vote:movi\n    Port:   80/TCP\n    Environment:    \nnone\n\n    Mounts: \nnone\n\n  Volumes:  \nnone\n\n\n\n\n\nTo undo rollout,\n\n\noc rollout undo deployment/vote\n\n\n\n\nor\n\n\noc rollout undo deployment/vote --to-revision=1\noc get rs\noc describe deployment vote", 
+            "title": "Rollouts and Rollbacks"
+        }, 
+        {
+            "location": "/rollouts-and-rollbacks/#rolling-updates-with-deployments", 
+            "text": "Update the version of the image in vote_deploy.yaml  File: vote_deploy.yaml  ...\n    app: vote\n    spec:\n      containers:\n      - image: schoolofdevops/vote:movies  Apply Changes and monitor the rollout  oc apply -f vote-deploy.yaml\noc rollout status deployment/vote", 
+            "title": "Rolling updates with deployments"
+        }, 
+        {
+            "location": "/rollouts-and-rollbacks/#rolling-back-a-failed-update", 
+            "text": "Lets update the image to a tag which is non existant. We intentionally introduce this intentional error to fail fail the deployment.  File: vote_deploy.yaml  ...\n    app: vote\n    spec:\n      containers:\n      - image: schoolofdevops/vote:movi  Do a new rollout and monitor  oc apply -f vote_deploy.yaml\noc rollout status deployment/vote  Also watch the pod status which might look like  vote-3040199436-sdq17   1/1       Running            0          9m\nvote-4086029260-0vjjb   0/1       ErrImagePull       0          16s\nvote-4086029260-zvgmd   0/1       ImagePullBackOff   0          15s\nvote-rc-fsdsd               1/1       Running            0          27m\nvote-rc-mcxs5               1/1       Running            0  To get the revision history and details    oc rollout history deployment/vote\noc rollout history deployment/vote --revision=x\n[replace x with the latest revision]  [Sample Output]  root@kube-01:~# oc rollout history deployment/vote\ndeployments  vote \nREVISION    CHANGE-CAUSE\n1       oc scale deployment/vote --replicas=5\n3        none \n6        none \n7        none \n\nroot@kube-01:~# oc rollout history deployment/vote --revision=7\ndeployments  vote  with revision #7\nPod Template:\n  Labels:   app=vote\n    env=dev\n    pod-template-hash=4086029260\n    role=ui\n    stack=voting\n    tier=front\n  Containers:\n   vote:\n    Image:  schoolofdevops/vote:movi\n    Port:   80/TCP\n    Environment:     none \n    Mounts:  none \n  Volumes:   none   To undo rollout,  oc rollout undo deployment/vote  or  oc rollout undo deployment/vote --to-revision=1\noc get rs\noc describe deployment vote", 
+            "title": "Rolling Back a Failed Update"
+        }, 
+        {
+            "location": "/8. Using Configmaps and Secrets/", 
+            "text": "Configmap is one of the ways to provide configurations to your application.\n\n\nInjecting env variables with configmaps\n\n\nCreate our configmap for vote app\n\n\nfile:  apps/voting/dev/vote-cm.yaml\n\n\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: vote\n  namespace: dev\ndata:\n  OPTION_A: EMACS\n  OPTION_B: VI\n\n\n\n\nIn the above given configmap, we define two environment variables,\n  1. OPTION_A=EMACS\n  2. OPTION_B=VI\n\n\nIn order to use this configmap in the deployment, we need to reference it from the deployment file.\nCheck the deployment file for vote add for the following block.\n\n\nfile: \nvote-deploy.yaml\n\n\n...\n    spec:\n      containers:\n      - image: schoolofdevops/vote\n        imagePullPolicy: Always\n        name: vote\n        envFrom:\n          - configMapRef:\n              name: vote\n        ports:\n        - containerPort: 80\n          protocol: TCP\n      restartPolicy: Always\n\n\n\n\nSo when you create your deployment, these configurations will be made available to your application. In this example, the values defined in the configmap (EMACS and VI) will override the default values(CATS and DOGS) present in your source code.\n\n\n\n\nConfigmap as a configuration file\n\n\nIn the  topic above we have seen how to use configmap as environment variables. Now let us see how to use configmap as redis configuration file.\n\n\nSyntax for consuming file as a configmap is as follows\n\n\n  oc create configmap --from-file \nCONF-FILE-PATH\n \nNAME-OF-CONFIGMAP\n\n\n\n\n\nWe have redis configuration as a file named \napps/voting/config/redis.conf\n. We are going to convert this file into a configmap\n\n\noc create configmap --from-file apps/voting/config/redis.conf redis\n\n\n\n\nUpdate your redis-deploy.yaml file to use this confimap.\nFile: \nredis-deploy.yaml\n\n\n    spec:\n      containers:\n      - image: schoolofdevops/redis:latest\n        imagePullPolicy: Always\n        name: redis\n        ports:\n        - containerPort: 6379\n          protocol: TCP\n        volumeMounts:\n          - name: redis\n            subPath: redis.conf\n            mountPath: /etc/redis.conf\n      volumes:\n      - name: redis\n        configMap:\n          name: redis\n      restartPolicy: Always\n\n\n\n\nSecrets\n\n\nSecrets are for storing sensitive data like \npasswords and keychains\n. We will see how db deployment uses username and password in form of a secret.\n\n\nYou would define two fields for db,\n  * username\n  * password\n\n\nTo create secrets for db you need to generate  \nbase64\n format as follows,\n\n\necho \nadmin\n | base64\necho \npassword\n | base64\n\n\n\n\nwhere \nadmin\n and \npassword\n are the actual values that you would want to inject into the pod environment.\n\n\nIf you do not have a unix host, you can make use of online base64 utility to generate these strings.\n\n\nhttp://www.utilities-online.info/base64\n\n\n\n\nLets now add it to the secrets file,\n\n\nFile: apps/voting/dev/db-secrets.yaml\n\n\napiVersion: v1\nkind: Secret\nmetadata:\n  name: db\n  namespace: dev\ntype: Opaque\ndata:\n  POSTGRES_USER: YWRtaW4=\n  # base64 of admin\n  POSTGRES_PASSWD: cGFzc3dvcmQ=\n  # base64 of password\n\n\n\n\nTo consume these secrets, update the deployment as\n\n\nfile: db-deploy.yaml.\n\n\napiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: db\n  namespace: dev\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      tier: back\n      app: postgres\n  minReadySeconds: 10\n  template:\n    metadata:\n      labels:\n        app: postgres\n        role: db\n        tier: back\n    spec:\n      containers:\n      - image: postgres:9.4\n        imagePullPolicy: Always\n        name: db\n        ports:\n        - containerPort: 5432\n          protocol: TCP\n# Secret definition\n        env:\n          - name: POSTGRES_USER\n            valueFrom:\n              secretKeyRef:\n                name: db\n                key: POSTGRES_USER\n          - name: POSTGRES_PASSWD\n            valueFrom:\n              secretKeyRef:\n                name: db\n                key: POSTGRES_PASSWD\n      restartPolicy: Always", 
+            "title": "Using Configmaps and Secrets"
+        }, 
+        {
+            "location": "/8. Using Configmaps and Secrets/#injecting-env-variables-with-configmaps", 
+            "text": "Create our configmap for vote app  file:  apps/voting/dev/vote-cm.yaml  apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: vote\n  namespace: dev\ndata:\n  OPTION_A: EMACS\n  OPTION_B: VI  In the above given configmap, we define two environment variables,\n  1. OPTION_A=EMACS\n  2. OPTION_B=VI  In order to use this configmap in the deployment, we need to reference it from the deployment file.\nCheck the deployment file for vote add for the following block.  file:  vote-deploy.yaml  ...\n    spec:\n      containers:\n      - image: schoolofdevops/vote\n        imagePullPolicy: Always\n        name: vote\n        envFrom:\n          - configMapRef:\n              name: vote\n        ports:\n        - containerPort: 80\n          protocol: TCP\n      restartPolicy: Always  So when you create your deployment, these configurations will be made available to your application. In this example, the values defined in the configmap (EMACS and VI) will override the default values(CATS and DOGS) present in your source code.", 
+            "title": "Injecting env variables with configmaps"
+        }, 
+        {
+            "location": "/8. Using Configmaps and Secrets/#configmap-as-a-configuration-file", 
+            "text": "In the  topic above we have seen how to use configmap as environment variables. Now let us see how to use configmap as redis configuration file.  Syntax for consuming file as a configmap is as follows    oc create configmap --from-file  CONF-FILE-PATH   NAME-OF-CONFIGMAP   We have redis configuration as a file named  apps/voting/config/redis.conf . We are going to convert this file into a configmap  oc create configmap --from-file apps/voting/config/redis.conf redis  Update your redis-deploy.yaml file to use this confimap.\nFile:  redis-deploy.yaml      spec:\n      containers:\n      - image: schoolofdevops/redis:latest\n        imagePullPolicy: Always\n        name: redis\n        ports:\n        - containerPort: 6379\n          protocol: TCP\n        volumeMounts:\n          - name: redis\n            subPath: redis.conf\n            mountPath: /etc/redis.conf\n      volumes:\n      - name: redis\n        configMap:\n          name: redis\n      restartPolicy: Always", 
+            "title": "Configmap as a configuration file"
+        }, 
+        {
+            "location": "/8. Using Configmaps and Secrets/#secrets", 
+            "text": "Secrets are for storing sensitive data like  passwords and keychains . We will see how db deployment uses username and password in form of a secret.  You would define two fields for db,\n  * username\n  * password  To create secrets for db you need to generate   base64  format as follows,  echo  admin  | base64\necho  password  | base64  where  admin  and  password  are the actual values that you would want to inject into the pod environment.  If you do not have a unix host, you can make use of online base64 utility to generate these strings.  http://www.utilities-online.info/base64  Lets now add it to the secrets file,  File: apps/voting/dev/db-secrets.yaml  apiVersion: v1\nkind: Secret\nmetadata:\n  name: db\n  namespace: dev\ntype: Opaque\ndata:\n  POSTGRES_USER: YWRtaW4=\n  # base64 of admin\n  POSTGRES_PASSWD: cGFzc3dvcmQ=\n  # base64 of password  To consume these secrets, update the deployment as  file: db-deploy.yaml.  apiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: db\n  namespace: dev\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      tier: back\n      app: postgres\n  minReadySeconds: 10\n  template:\n    metadata:\n      labels:\n        app: postgres\n        role: db\n        tier: back\n    spec:\n      containers:\n      - image: postgres:9.4\n        imagePullPolicy: Always\n        name: db\n        ports:\n        - containerPort: 5432\n          protocol: TCP\n# Secret definition\n        env:\n          - name: POSTGRES_USER\n            valueFrom:\n              secretKeyRef:\n                name: db\n                key: POSTGRES_USER\n          - name: POSTGRES_PASSWD\n            valueFrom:\n              secretKeyRef:\n                name: db\n                key: POSTGRES_PASSWD\n      restartPolicy: Always", 
+            "title": "Secrets"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/", 
+            "text": "Kubernetes Horizonntal Pod Autoscaling\n\n\nWith Horizontal Pod Autoscaling, Kubernetes automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization (or, with alpha support, on some other, application-provided metrics).\n\n\nThe Horizontal Pod Autoscaler is implemented as a Kubernetes API resource and a controller. The resource determines the behavior of the controller. The controller periodically adjusts the number of replicas in a replication controller or deployment to match the observed average CPU utilization to the target specified by user\n\n\nPrerequisites\n\n\nHeapster monitoring needs to be deployed in the cluster as Horizontal Pod Autoscaler uses it to collect metrics.\n\n\nDeploying Heapster\n\n\nGo to the below directory and create the deployment and services.\n\n\ngit clone https://github.com/kubernetes/heapster.git\ncd heapster\nkubectl apply -f deploy/kube-config/influxdb/\nkubectl apply -f deploy/kube-config/rbac/heapster-rbac.yaml\n\n\n\n\nValidate that heapster, influxdb and grafana are started\n\n\nkubectl get pods -n kube-system\nkubectl get svc -n kube-system\n\n\n\n\n\nNow this will deploy the heapster monitoring.\n\n\nRun \n expose php-apache server\n\n\nTo demonstrate Horizontal Pod Autoscaler we will use a custom docker image based on the php-apache image\n\n\nkubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80  \n\n\n\n\nSample Output\n\n\nkubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80\nservice \nphp-apache\n created\ndeployment \nphp-apache\n created\n\n\n\n\nTo verify the created pod:\n\n\nkubectl get pods\n\n\n\n\nWait untill the pod changes to running state.\n\n\nCreate Horizontal Pod Autoscaler\n\n\nNow that the server is running, we will create the autoscaler using kubectl autoscale. The following command will create a Horizontal Pod Autoscaler that maintains between 1 and 10 replicas of the Pods controlled by the php-apache deployment we created in the first step of these instructions.\n\n\nkubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10\n\n\n\n\nSample Output\n\n\nkubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10\ndeployment \nphp-apache\n autoscaled\n\n\n\n\nWe may check the current status of autoscaler by running:\n\n\nkubectl get hpa\n\n\n\n\nSample Output:\n\n\nkubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache   50%       0%        1         10        18s\n\n\n\n\nIncrease load\n\n\nNow we can increase the load and trying testing what will happen.\nWe will start a container, and send an infinite loop of queries to the php-apache service\n\n\nkubectl run -i --tty -n dev load-generator --image=busybox /bin/sh\n\nHit enter for command prompt\n\nwhile true; do wget -q -O- http://php-apache; done\n\n\n\n\n\nNow open a new window of the same machine.\n\n\nAnd check the status of the hpa\n\n\nkubectl get hpa\n\n\n\n\nSample Output:\n\n\nkubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache/scale   50%       305%      1         10        3m\n\n\n\n\nNow if you check the pods it will be automatically scaled to the desired value.\n\n\nkubectl get pods\n\n\n\n\nSample Output\n\n\nkubectl get pods\nNAME                              READY     STATUS    RESTARTS   AGE\nload-generator-1930141919-1pqn0   1/1       Running   0          1h\nphp-apache-3815965786-2jmm9       1/1       Running   0          1h\nphp-apache-3815965786-4f0ck       1/1       Running   0          1h\nphp-apache-3815965786-73w24       1/1       Running   0          1h\nphp-apache-3815965786-80n2x       1/1       Running   0          1h\nphp-apache-3815965786-c6w0k       1/1       Running   0          1h\nphp-apache-3815965786-f06dg       1/1       Running   0          1h\nphp-apache-3815965786-nfs8d       1/1       Running   0          1h\nphp-apache-3815965786-phrhs       1/1       Running   0          1h\nphp-apache-3815965786-z6rnm       1/1       Running   0          1h\n\n\n\n\nStop load\n\n\nIn the terminal where we created the container with busybox image, terminate the load generation by typing \n + C\n\n\nThen we will verify the result state (after a minute or so)\n\n\nkubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache/scale   50%       0%        1         10        11m\n\n$ kubectl get deployment php-apache\nNAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE\nphp-apache   1         1         1            1           27m", 
+            "title": "Auto Scaling Capacity with HPA"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#kubernetes-horizonntal-pod-autoscaling", 
+            "text": "With Horizontal Pod Autoscaling, Kubernetes automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization (or, with alpha support, on some other, application-provided metrics).  The Horizontal Pod Autoscaler is implemented as a Kubernetes API resource and a controller. The resource determines the behavior of the controller. The controller periodically adjusts the number of replicas in a replication controller or deployment to match the observed average CPU utilization to the target specified by user", 
+            "title": "Kubernetes Horizonntal Pod Autoscaling"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#prerequisites", 
+            "text": "Heapster monitoring needs to be deployed in the cluster as Horizontal Pod Autoscaler uses it to collect metrics.", 
+            "title": "Prerequisites"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#deploying-heapster", 
+            "text": "Go to the below directory and create the deployment and services.  git clone https://github.com/kubernetes/heapster.git\ncd heapster\nkubectl apply -f deploy/kube-config/influxdb/\nkubectl apply -f deploy/kube-config/rbac/heapster-rbac.yaml  Validate that heapster, influxdb and grafana are started  kubectl get pods -n kube-system\nkubectl get svc -n kube-system  Now this will deploy the heapster monitoring.", 
+            "title": "Deploying Heapster"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#run-expose-php-apache-server", 
+            "text": "To demonstrate Horizontal Pod Autoscaler we will use a custom docker image based on the php-apache image  kubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80    Sample Output  kubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80\nservice  php-apache  created\ndeployment  php-apache  created  To verify the created pod:  kubectl get pods  Wait untill the pod changes to running state.", 
+            "title": "Run &amp; expose php-apache server"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#create-horizontal-pod-autoscaler", 
+            "text": "Now that the server is running, we will create the autoscaler using kubectl autoscale. The following command will create a Horizontal Pod Autoscaler that maintains between 1 and 10 replicas of the Pods controlled by the php-apache deployment we created in the first step of these instructions.  kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10  Sample Output  kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10\ndeployment  php-apache  autoscaled  We may check the current status of autoscaler by running:  kubectl get hpa  Sample Output:  kubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache   50%       0%        1         10        18s", 
+            "title": "Create Horizontal Pod Autoscaler"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#increase-load", 
+            "text": "Now we can increase the load and trying testing what will happen.\nWe will start a container, and send an infinite loop of queries to the php-apache service  kubectl run -i --tty -n dev load-generator --image=busybox /bin/sh\n\nHit enter for command prompt\n\nwhile true; do wget -q -O- http://php-apache; done  Now open a new window of the same machine.  And check the status of the hpa  kubectl get hpa  Sample Output:  kubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache/scale   50%       305%      1         10        3m  Now if you check the pods it will be automatically scaled to the desired value.  kubectl get pods  Sample Output  kubectl get pods\nNAME                              READY     STATUS    RESTARTS   AGE\nload-generator-1930141919-1pqn0   1/1       Running   0          1h\nphp-apache-3815965786-2jmm9       1/1       Running   0          1h\nphp-apache-3815965786-4f0ck       1/1       Running   0          1h\nphp-apache-3815965786-73w24       1/1       Running   0          1h\nphp-apache-3815965786-80n2x       1/1       Running   0          1h\nphp-apache-3815965786-c6w0k       1/1       Running   0          1h\nphp-apache-3815965786-f06dg       1/1       Running   0          1h\nphp-apache-3815965786-nfs8d       1/1       Running   0          1h\nphp-apache-3815965786-phrhs       1/1       Running   0          1h\nphp-apache-3815965786-z6rnm       1/1       Running   0          1h", 
+            "title": "Increase load"
+        }, 
+        {
+            "location": "/6. Kubernetes Autoscaling/#stop-load", 
+            "text": "In the terminal where we created the container with busybox image, terminate the load generation by typing   + C  Then we will verify the result state (after a minute or so)  kubectl get hpa\nNAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE\nphp-apache   Deployment/php-apache/scale   50%       0%        1         10        11m\n\n$ kubectl get deployment php-apache\nNAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE\nphp-apache   1         1         1            1           27m", 
+            "title": "Stop load"
+        }, 
+        {
+            "location": "/6. deploying_sample_app/", 
+            "text": "Mini Project: Deploying Multi Tier Application Stack\n\n\nIn this project , you would write definitions for deploying the vote application stack with all components/tiers which include,\n\n\n\n\nvote ui\n\n\nredis\n\n\nworker\n\n\ndb\n\n\nresults ui\n\n\n\n\nTasks\n\n\n\n\nCreate deployments for all applications\n\n\nDefine services for each tier\n\n\nLaunch/appy the definitions\n\n\n\n\nFollowing table depicts the state of readiness of the above services.\n\n\n\n\n\n\n\n\nApp\n\n\nDeployment\n\n\nService\n\n\n\n\n\n\n\n\n\n\nvote\n\n\nready\n\n\nready\n\n\n\n\n\n\nredis\n\n\nin progress\n\n\nready\n\n\n\n\n\n\nworker\n\n\nin progress\n\n\nin progress\n\n\n\n\n\n\ndb\n\n\nin progress\n\n\ntodo\n\n\n\n\n\n\nresults\n\n\ntodo\n\n\ntodo\n\n\n\n\n\n\n\n\nDeploying the sample application\n\n\nTo create deploy the sample applications,\n\n\noc create -f apps/voting/dev\n\n\n\n\nSample output is like:\n\n\ndeployment \ndb\n created\nservice \ndb\n created\ndeployment \nredis\n created\nservice \nredis\n created\ndeployment \nvote\n created\nservice \nvote\n created\ndeployment \nworker\n created\ndeployment \nresults\n created\nservice \nresults\n created\n\n\n\n\nTo Validatecheck it:\n\n\noc get svc -n dev\n\n\n\n\nSample Output is:\n\n\noc get service voting-app\nNAME         CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE\nvote   10.97.104.243   \npending\n     80:31808/TCP   1h\n\n\n\n\nHere the port assigned is 31808, go to the browser and enter\n\n\nmasterip:31808\n\n\n\n\n\n\nThis will load the page where you can vote.\n\n\nTo check the result:\n\n\noc get service result\n\n\n\n\nSample Output is:\n\n\noc get service result\nNAME      CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE\nresult    10.101.112.16   \npending\n     80:32511/TCP   1h\n\n\n\n\nHere the port assigned is 32511, go to the browser and enter\n\n\nmasterip:32511\n\n\n\n\n\n\nThis is the page where we can see the results of the vote.", 
+            "title": "Mini Project"
+        }, 
+        {
+            "location": "/6. deploying_sample_app/#mini-project-deploying-multi-tier-application-stack", 
+            "text": "In this project , you would write definitions for deploying the vote application stack with all components/tiers which include,   vote ui  redis  worker  db  results ui", 
+            "title": "Mini Project: Deploying Multi Tier Application Stack"
+        }, 
+        {
+            "location": "/6. deploying_sample_app/#tasks", 
+            "text": "Create deployments for all applications  Define services for each tier  Launch/appy the definitions   Following table depicts the state of readiness of the above services.     App  Deployment  Service      vote  ready  ready    redis  in progress  ready    worker  in progress  in progress    db  in progress  todo    results  todo  todo", 
+            "title": "Tasks"
+        }, 
+        {
+            "location": "/6. deploying_sample_app/#deploying-the-sample-application", 
+            "text": "To create deploy the sample applications,  oc create -f apps/voting/dev  Sample output is like:  deployment  db  created\nservice  db  created\ndeployment  redis  created\nservice  redis  created\ndeployment  vote  created\nservice  vote  created\ndeployment  worker  created\ndeployment  results  created\nservice  results  created", 
+            "title": "Deploying the sample application"
+        }, 
+        {
+            "location": "/6. deploying_sample_app/#to-validatecheck-it", 
+            "text": "oc get svc -n dev  Sample Output is:  oc get service voting-app\nNAME         CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE\nvote   10.97.104.243    pending      80:31808/TCP   1h  Here the port assigned is 31808, go to the browser and enter  masterip:31808   This will load the page where you can vote.  To check the result:  oc get service result  Sample Output is:  oc get service result\nNAME      CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE\nresult    10.101.112.16    pending      80:32511/TCP   1h  Here the port assigned is 32511, go to the browser and enter  masterip:32511   This is the page where we can see the results of the vote.", 
+            "title": "To Validatecheck it:"
+        }
+    ]
+}
