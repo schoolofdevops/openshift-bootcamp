@@ -1,0 +1,7 @@
+site_name: Openshift Bootcamp
+pages:
+  - Home: README.md
+  - Chapters:
+    - Openshift Bootcamp: "chapters/openshift-bootcamp.md"
+docs_dir: "chapters"
+theme: readthedocs
