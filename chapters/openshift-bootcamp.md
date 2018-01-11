@@ -116,6 +116,7 @@ Following are the topics which would be covered as part of this course. Detailed
   * Designing Production Grade Openshift Architecture
   * Setup a Openshift Cluster
   * Securing Openshift
+  * Openshift Administration
 
 ## Detailed Course Outline
 This is the detailed course outline with day wise list of contents
@@ -200,3 +201,9 @@ This is the detailed course outline with day wise list of contents
     * SSC
       * Security Context Constraints
     * Security considerations
+
+#### Module 9: Openshift Administration
+  * Quota
+  * Memberships
+  * Monitoring
+  * Logging
