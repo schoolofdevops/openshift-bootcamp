@@ -1,0 +1,11 @@
+---
+slug: openshift-bootcamp
+filename: openshift-bootcamp
+title: Openshift Bootcamp
+subtitle: Build and deploy containers at production scale with Openshift
+description: This is a bootcamp which is created as part of the devops mastery series which helps a devops engineer to master the concepts related to Openshift, a open platform built on top of kubernetes. 
+author: Gourav Shah
+copyright: 2018
+uuid: 8a3683a4-4cfe-4558-af38-cc0601f1c981
+pdf_preview_page_range: 1..30
+epub_mobi_preview_chapter_range: 0..1
