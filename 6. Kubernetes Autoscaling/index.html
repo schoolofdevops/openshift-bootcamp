@@ -92,7 +92,7 @@
     <a class="current" href="./">Auto Scaling Capacity with HPA</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#kubernetes-horizonntal-pod-autoscaling">Kubernetes Horizonntal Pod Autoscaling</a></li>
+    <li class="toctree-l2"><a href="#openshift-horizonntal-pod-autoscaling">Openshift Horizonntal Pod Autoscaling</a></li>
     
         <ul>
         
@@ -149,58 +149,58 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="kubernetes-horizonntal-pod-autoscaling">Kubernetes Horizonntal Pod Autoscaling</h1>
-<p>With Horizontal Pod Autoscaling, Kubernetes automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization (or, with alpha support, on some other, application-provided metrics).</p>
-<p>The Horizontal Pod Autoscaler is implemented as a Kubernetes API resource and a controller. The resource determines the behavior of the controller. The controller periodically adjusts the number of replicas in a replication controller or deployment to match the observed average CPU utilization to the target specified by user</p>
+                <h1 id="openshift-horizonntal-pod-autoscaling">Openshift Horizonntal Pod Autoscaling</h1>
+<p>With Horizontal Pod Autoscaling, Openshift automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization (or, with alpha support, on some other, application-provided metrics).</p>
+<p>The Horizontal Pod Autoscaler is implemented as a Openshift API resource and a controller. The resource determines the behavior of the controller. The controller periodically adjusts the number of replicas in a replication controller or deployment to match the observed average CPU utilization to the target specified by user</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>Heapster monitoring needs to be deployed in the cluster as Horizontal Pod Autoscaler uses it to collect metrics.</p>
 <h4 id="deploying-heapster">Deploying Heapster</h4>
 <p>Go to the below directory and create the deployment and services.</p>
-<pre><code>git clone https://github.com/kubernetes/heapster.git
+<pre><code>git clone https://github.com/Openshift/heapster.git
 cd heapster
-kubectl apply -f deploy/kube-config/influxdb/
-kubectl apply -f deploy/kube-config/rbac/heapster-rbac.yaml
+oc apply -f deploy/kube-config/influxdb/
+oc apply -f deploy/kube-config/rbac/heapster-rbac.yaml
 </code></pre>
 
 <p>Validate that heapster, influxdb and grafana are started</p>
-<pre><code>kubectl get pods -n kube-system
-kubectl get svc -n kube-system
+<pre><code>oc get pods -n kube-system
+oc get svc -n kube-system
 
 </code></pre>
 
 <p>Now this will deploy the heapster monitoring.</p>
 <h3 id="run-expose-php-apache-server">Run &amp; expose php-apache server</h3>
 <p>To demonstrate Horizontal Pod Autoscaler we will use a custom docker image based on the php-apache image</p>
-<pre><code>kubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80  
+<pre><code>oc run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80  
 </code></pre>
 
 <p>Sample Output</p>
-<pre><code>kubectl run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80
+<pre><code>oc run php-apache --image=gcr.io/google_containers/hpa-example --requests=cpu=200m --expose --port=80
 service &quot;php-apache&quot; created
 deployment &quot;php-apache&quot; created
 </code></pre>
 
 <p>To verify the created pod:</p>
-<pre><code>kubectl get pods
+<pre><code>oc get pods
 </code></pre>
 
 <p>Wait untill the pod changes to running state.</p>
 <h3 id="create-horizontal-pod-autoscaler">Create Horizontal Pod Autoscaler</h3>
-<p>Now that the server is running, we will create the autoscaler using kubectl autoscale. The following command will create a Horizontal Pod Autoscaler that maintains between 1 and 10 replicas of the Pods controlled by the php-apache deployment we created in the first step of these instructions.</p>
-<pre><code>kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+<p>Now that the server is running, we will create the autoscaler using oc autoscale. The following command will create a Horizontal Pod Autoscaler that maintains between 1 and 10 replicas of the Pods controlled by the php-apache deployment we created in the first step of these instructions.</p>
+<pre><code>oc autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 </code></pre>
 
 <p>Sample Output</p>
-<pre><code>kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+<pre><code>oc autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 deployment &quot;php-apache&quot; autoscaled
 </code></pre>
 
 <p>We may check the current status of autoscaler by running:</p>
-<pre><code>kubectl get hpa
+<pre><code>oc get hpa
 </code></pre>
 
 <p>Sample Output:</p>
-<pre><code>kubectl get hpa
+<pre><code>oc get hpa
 NAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE
 php-apache   Deployment/php-apache   50%       0%        1         10        18s
 </code></pre>
@@ -208,7 +208,7 @@ php-apache   Deployment/php-apache   50%       0%        1         10        18s
 <h3 id="increase-load">Increase load</h3>
 <p>Now we can increase the load and trying testing what will happen.
 We will start a container, and send an infinite loop of queries to the php-apache service</p>
-<pre><code>kubectl run -i --tty -n dev load-generator --image=busybox /bin/sh
+<pre><code>oc run -i --tty -n dev load-generator --image=busybox /bin/sh
 
 Hit enter for command prompt
 
@@ -218,21 +218,21 @@ while true; do wget -q -O- http://php-apache; done
 
 <p>Now open a new window of the same machine.</p>
 <p>And check the status of the hpa</p>
-<pre><code>kubectl get hpa
+<pre><code>oc get hpa
 </code></pre>
 
 <p>Sample Output:</p>
-<pre><code>kubectl get hpa
+<pre><code>oc get hpa
 NAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE
 php-apache   Deployment/php-apache/scale   50%       305%      1         10        3m
 </code></pre>
 
 <p>Now if you check the pods it will be automatically scaled to the desired value.</p>
-<pre><code>kubectl get pods
+<pre><code>oc get pods
 </code></pre>
 
 <p>Sample Output</p>
-<pre><code>kubectl get pods
+<pre><code>oc get pods
 NAME                              READY     STATUS    RESTARTS   AGE
 load-generator-1930141919-1pqn0   1/1       Running   0          1h
 php-apache-3815965786-2jmm9       1/1       Running   0          1h
@@ -249,11 +249,11 @@ php-apache-3815965786-z6rnm       1/1       Running   0          1h
 <h3 id="stop-load">Stop load</h3>
 <p>In the terminal where we created the container with busybox image, terminate the load generation by typing <Ctrl> + C</p>
 <p>Then we will verify the result state (after a minute or so)</p>
-<pre><code>kubectl get hpa
+<pre><code>oc get hpa
 NAME         REFERENCE                     TARGET    CURRENT   MINPODS   MAXPODS   AGE
 php-apache   Deployment/php-apache/scale   50%       0%        1         10        11m
 
-$ kubectl get deployment php-apache
+$ oc get deployment php-apache
 NAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 php-apache   1         1         1            1           27m
 </code></pre>
