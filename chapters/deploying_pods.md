@@ -15,7 +15,7 @@ Life of a pod
 
 ### Resource Configs
 
-Each entity created with kubernetes is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.
+Each entity created with Openshift is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.
 
 **AKMS** => Resource Configs Specs
 
@@ -68,6 +68,17 @@ spec:
         - containerPort: 80
 ```
 
+
+### Updating Security Context
+
+To allow containers created with images with root user, security context needs to be edited. By default openshift restricts running any container which runs as root.
+
+```
+oc login -u system:admin
+
+oc edit scc restricted
+```
+Change the runAsUser.Type strategy to RunAsAny.
 
 ### Launching and operating a Pod
 
