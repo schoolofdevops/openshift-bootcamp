@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>02 devops php app - Openshift Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "02 devops php app";
+    var mkdocs_page_input_path = "02_devops_php_app.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openshift-bootcamp/">About the Course</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configuring Cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deploying_pods/">Launching Pods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../exposing_app_with_service/">Service Endpoints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rollouts-and-rollbacks/">Rollouts and Rollbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8. Using Configmaps and Secrets/">Using Configmaps and Secrets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. Kubernetes Autoscaling/">Auto Scaling Capacity with HPA</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. deploying_sample_app/">Mini Project</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Openshift Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>02 devops php app</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="deploying-devops-demo-php-application-for-github-repo">Deploying Devops Demo PHP Application for GitHub Repo</h2>
+<p>In this section we are deploying sample devops demo PHP app from GitHub repo.
+we use the same cluster earlier deployed simple aaplication with diffrent project namespace.
+This docs demonstrates how to get a simple project up and running on OpenShift. Application that will serve a welcome page Welcome to the DevOps Demo Application.</p>
+<ul>
+<li>Go to Home Page.</li>
+<li>click on create project.</li>
+<li>Enter the project name Display name and describtions.
+<img alt="project" src="../images/php1.png" /></li>
+</ul>
+<p>After creating the project namespace swaitch to yor new project name space you can see here new worksapce.</p>
+<p><img alt="project" src="../images/php2.png" /></p>
+<ul>
+<li>click the Browse catalog you can see here multiple programming languages and databases.</li>
+<li>select the php you can see here php+mysql and only php choose php</li>
+</ul>
+<p><img alt="project" src="../images/php3.png" /></p>
+<ul>
+<li>
+<p>After selecting the language provide the information ,
+configuration</p>
+</li>
+<li>
+<p>In configuration you can provides version of the programming language and following GitHub repo.</p>
+</li>
+</ul>
+<pre><code>https://github.com/devopsdemoapps/devops-demo-app.git
+</code></pre>
+
+<p><img alt="project" src="../images/php4.png" /></p>
+<ul>
+<li>click on the Advance option</li>
+</ul>
+<p>In this section yoc can provides following options.
+* reference</p>
+<ul>
+<li>
+<p>Tag</p>
+</li>
+<li>
+<p>Routing</p>
+</li>
+<li>
+<p>Deployment Configuration</p>
+</li>
+<li>
+<p>scaling</p>
+</li>
+<li>
+<p>Resource Limit</p>
+</li>
+<li>
+<p>Labels</p>
+</li>
+</ul>
+<p><img alt="project" src="../images/php5.png" /></p>
+<p>Then click create project. After create project automated build build your project .
+ In the web console, view the Overview page for your project to determine the web address for your application. Click the web address displayed right side web console open this link on new tab.</p>
+<p><img alt="project" src="../images/php10.png" /></p>
+<p>### OpenShift CommandLine
+ When we are using OpenShift many of the tasks that you need to do can be performed through the OpenShift web Broser console or directly using the oc command line tool. or you can observe here backed utility.</p>
+<p>In this case we need the OpenShift token . we can create token using opnshift web console click on user Devloper and there is option copy login command click on this paste on your console.</p>
+<p><img alt="project" src="../images/php7.png" /></p>
+<p><code>oc login https://128.199.213.193:8443 --token=&lt; your token&gt;</code>
+ [output]
+ <code>Logged into "https://128.199.213.193:8443" as "developer" using the token provided.
+You have access to the following projects and can switch between them with 'oc project &lt;projectname&gt;':
+    devops-demo-app
+  * myproject
+Using project "myproject".</code>
+ here display your all the project with the curent project namespace.
+you can swaitch your project namespace using following Command</p>
+<pre><code>oc project devops-demo-app
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Now using project &quot;devops-demo-app&quot; on server &quot;https://128.199.213.193:8443&quot;.
+</code></pre>
+
+<p>see the all contexts use following Command</p>
+<pre><code>oc config get-contexts
+</code></pre>
+
+<p>[output]
+ <code>CURRENT   NAME                                        CLUSTER                AUTHINFO                            NAMESPACE
+          /128-199-213-193:8443/developer             128-199-213-193:8443   developer/128-199-213-193:8443      
+          default/128-199-213-193:8443/system:admin   128-199-213-193:8443   system:admin/128-199-213-193:8443   default
+*         myproject/128-199-213-193:8443/developer    128-199-213-193:8443   developer/128-199-213-193:8443      myproject</code>
+ getting the pods here you can use pods or only po
+ <code>oc get pods</code>
+ [output]
+ <code>NAME                READY     STATUS      RESTARTS   AGE
+front-end-1-build   0/1       Completed   0          22m
+front-end-1-x59fd   1/1       Running     0          21m</code>
+ getting all replicas
+ <code>oc get rc</code>
+ [output]
+ <code>NAME          DESIRED   CURRENT   READY     AGE
+front-end-1   1         1         1         22m</code>
+ getting all services
+ <code>oc get svc</code>
+ [output]
+ <code>NAME        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+front-end   ClusterIP   172.30.25.85   &lt;none&gt;        8080/TCP,8443/TCP   24m</code>
+ describe front-end services
+ <code>oc describe svc front-end
+Name:              front-end
+Namespace:         devops-demo-app
+Labels:            app=front-end
+Annotations:       openshift.io/generated-by=OpenShiftWebConsole
+Selector:          deploymentconfig=front-end
+Type:              ClusterIP
+IP:                172.30.25.85
+Port:              8080-tcp  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         172.17.0.8:8080
+Port:              8443-tcp  8443/TCP
+TargetPort:        8443/TCP
+Endpoints:         172.17.0.8:8443
+Session Affinity:  None
+Events:            &lt;none&gt;</code>
+ getting deploymentconfig
+ <code>oc get deploymentconfig</code>
+[output]</p>
+<pre><code>NAME        REVISION   DESIRED   CURRENT   TRIGGERED BY
+front-end   1          1         1         config,image(front-end:latest)\
+
+</code></pre>
+
+<p>getting build</p>
+<pre><code>oc get build
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME          TYPE      FROM          STATUS     STARTED          DURATION
+front-end-1   Source    Git@6ef2140   Complete   29 minutes ago   34s
+
+</code></pre>
+
+<p>getting route</p>
+<pre><code>oc get route
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME        HOST/PORT                                          PATH      SERVICES    PORT       TERMINATION   WILDCARD
+front-end   front-end-devops-demo-app.128.199.213.193.nip.io             front-end   8080-tcp                 None
+</code></pre>
+
+<p>describe route</p>
+<pre><code>oc describe route front-end
+</code></pre>
+
+<p>[ouutput]</p>
+<pre><code>Name:           front-end
+Namespace:      devops-demo-app
+Created:        32 minutes ago
+Labels:         app=front-end
+Annotations:        openshift.io/generated-by=OpenShiftWebConsole
+            openshift.io/host.generated=true
+Requested Host:     front-end-devops-demo-app.128.199.213.193.nip.io
+              exposed on router router 32 minutes ago
+Path:           &lt;none&gt;
+TLS Termination:    &lt;none&gt;
+Insecure Policy:    &lt;none&gt;
+Endpoint Port:      8080-tcp
+
+Service:    front-end
+Weight:     100 (100%)
+Endpoints:  172.17.0.8:8443, 172.17.0.8:8080
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

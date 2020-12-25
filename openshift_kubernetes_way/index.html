@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Openshift kubernetes way - Openshift Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Openshift kubernetes way";
+    var mkdocs_page_input_path = "openshift_kubernetes_way.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openshift-bootcamp/">About the Course</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configuring Cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deploying_pods/">Launching Pods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../exposing_app_with_service/">Service Endpoints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rollouts-and-rollbacks/">Rollouts and Rollbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8. Using Configmaps and Secrets/">Using Configmaps and Secrets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. Kubernetes Autoscaling/">Auto Scaling Capacity with HPA</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. deploying_sample_app/">Mini Project</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Openshift Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Openshift kubernetes way</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="openshift-the-kubernetes-way">Openshift the Kubernetes way</h3>
+<h4 id="creating-a-project-and-switching-context">Creating a project and switching context</h4>
+<p>In this section we are deploying instavote app app from GitHub repo.
+we use the same cluster earlier deployed simple aaplication with diffrent project namespace.
+This docs demonstrates how to get a simple project up and running on OpenShift. Application that will serve a welcome page Welcome to the DevOps Demo Application.</p>
+<ul>
+<li>Go to Home Page.</li>
+<li>click on create project.</li>
+<li>Enter the project name Display name and describtions.
+<img alt="project" src="../images/php1.png" /></li>
+</ul>
+<p>Download git repo. using following command.</p>
+<pre><code>git clone https://github.com/schoolofdevops/openshift-code.git
+cd openshift-code/
+</code></pre>
+
+<h3 id="openshift-commandline">OpenShift CommandLine</h3>
+<p>When we are using OpenShift many of the tasks that you need to do can be performed through the OpenShift web Broser console or directly using the oc command line tool. or you can observe here backed utility.</p>
+<p>In this case we need the OpenShift token . we can create token using opnshift web console click on user Devloper and there is option copy login command click on this paste on your console.</p>
+<p><img alt="project" src="../images/php7.png" /></p>
+<p><code>oc login https://128.199.213.193:8443 --token=&lt; your token&gt;</code>
+ [output]</p>
+<p>```
+ Logged into "https://128.199.213.193:8443" as "developer" using the token provided.
+You have access to the following projects and can switch between them with 'oc project <projectname>':
+    devops-demo-app
+  * myproject
+Using project "myproject".</p>
+<pre><code> here display your all the project with the curent project namespace.
+you can swaitch your project namespace using following Command
+
+check how many projects are present using following command.
+
+</code></pre>
+
+<p>oc projects</p>
+<pre><code>[ouput]
+
+</code></pre>
+
+<p>You have access to the following projects and can switch between them with 'oc project <projectname>':</p>
+<pre><code>instavote - instavote app stack
+</code></pre>
+<ul>
+<li>myproject - My Project</li>
+</ul>
+<p>Using project "myproject" on server "https://128.199.213.193:8443".</p>
+<pre><code>switch one project to another project using following command.
+
+</code></pre>
+
+<p>oc project instavote</p>
+<pre><code>[ouput]
+
+</code></pre>
+
+<p>Now using project "instavote" on server "https://128.199.213.193:8443".</p>
+<pre><code>check the context using following command.
+
+</code></pre>
+
+<p>oc config get-contexts</p>
+<pre><code>[output]
+
+</code></pre>
+
+<p>CURRENT   NAME                                             CLUSTER                AUTHINFO                            NAMESPACE
+          /128-199-213-193:8443/developer                  128-199-213-193:8443   developer/128-199-213-193:8443
+          default/128-199-213-193:8443/system:admin        128-199-213-193:8443   system:admin/128-199-213-193:8443   default
+          devops-demo-app/128-199-213-193:8443/developer   128-199-213-193:8443   developer/128-199-213-193:8443      devops-demo-app
+*         instavote/128-199-213-193:8443/developer         128-199-213-193:8443   developer/128-199-213-193:8443      instavote
+          myproject/128-199-213-193:8443/developer         128-199-213-193:8443   developer/128-199-213-193:8443      myproject</p>
+<pre><code>#### Writing a pod spec and applying it with oc cli
+
+In this section we talking about how to write pod spec Kubernetes way and deploy it on openshift. openshift underneath uses Kubernetes just see [openshift docs](https://docs.openshift.com/container-platform/3.10/welcome/index.html) . you can see here kubernetes all spec.
+openshift extends kubernetes api on top of kubernetes. we will start how to write pod spec. just clone repo.
+
+</code></pre>
+
+<p>git clone https://github.com/schoolofdevops/openshift-code.git
+cd openshift-code/pods/</p>
+<pre><code>##### Writing Pod Spec
+Lets now create the Pod config by adding the kind and specs to schme given in the file vote-pod.yaml as follows.
+</code></pre>
+
+<p>apiVersion: v1
+kind:
+metadata:
+spec:</p>
+<pre><code>Lets edit this and add the pod specs
+
+</code></pre>
+
+<p>apiVersion: v1
+kind: Pod
+metadata:
+  name: vote
+  labels:
+    app: python
+    role: vote
+    version: v1
+spec:
+  containers:
+    - name: app
+      image: schoolofdevops/vote:v1
+      ports:
+        - containerPort: 80
+          protocol: TCP</p>
+<pre><code>
+##### Launching and operating a Pod
+
+use the following command to check syntax of yaml file
+
+</code></pre>
+
+<p>oc apply -f vote-pod.yaml --dry-run</p>
+<pre><code>use the following command to create pod . just remove --dry-run.
+
+</code></pre>
+
+<p>oc apply -f vote-pod.yaml</p>
+<pre><code>
+</code></pre>
+
+<p>oc get pods</p>
+<pre><code>[output]
+</code></pre>
+
+<p>NAME      READY     STATUS    RESTARTS   AGE
+vote      1/1       Running   0          22s</p>
+<pre><code>
+after few seconds shows pods status error because it can't connect port 80. here port 80 need root access that why it not working. openshift does not allow root privilege .
+
+just see the the security policy.
+
+</code></pre>
+
+<p>oc get scc</p>
+<pre><code>[output]
+
+</code></pre>
+
+<p>Error from server (Forbidden): securitycontextconstraints.security.openshift.io is forbidden: User "developer" cannot list securitycontextconstraints.security.openshift.io at the cluster scope: User "developer" cannot list all securitycontextconstraints.security.openshift.io in the cluster</p>
+<pre><code></code></pre>
+
+<p>find / -type f -name admin.kubeconfig</p>
+<pre><code>[output]
+
+</code></pre>
+
+<p>/home/openshift.local.clusterup/kube-apiserver/admin.kubeconfig
+/home/openshift.local.clusterup/openshift-controller-manager/admin.kubeconfig
+/home/openshift.local.clusterup/openshift-apiserver/admin.kubeconfig
+/root/openshift.local.clusterup/kube-apiserver/admin.kubeconfig
+/root/openshift.local.clusterup/openshift-controller-manager/admin.kubeconfig
+/root/openshift.local.clusterup/openshift-apiserver/admin.kubeconfig</p>
+<pre><code></code></pre>
+
+<p>oc --config=/root/openshift.local.clusterup/kube-apiserver/admin.kubeconfig get scc</p>
+<pre><code>[output]
+
+</code></pre>
+
+<p>NAME               PRIV      CAPS      SELINUX     RUNASUSER          FSGROUP     SUPGROUP    PRIORITY   READONLYROOTFS   VOLUMES
+anyuid             false     []        MustRunAs   RunAsAny           RunAsAny    RunAsAny    10         false            [configMap downwardAPI emptyDir persistentVolumeClaim projected secret]
+hostaccess         false     []        MustRunAs   MustRunAsRange     MustRunAs   RunAsAny    <none>     false            [configMap downwardAPI emptyDir hostPath persistentVolumeClaim projected secret]
+hostmount-anyuid   false     []        MustRunAs   RunAsAny           RunAsAny    RunAsAny    <none>     false            [configMap downwardAPI emptyDir hostPath nfs persistentVolumeClaim projected secret]
+hostnetwork        false     []        MustRunAs   MustRunAsRange     MustRunAs   MustRunAs   <none>     false            [configMap downwardAPI emptyDir persistentVolumeClaim projected secret]
+nonroot            false     []        MustRunAs   MustRunAsNonRoot   RunAsAny    RunAsAny    <none>     false            [configMap downwardAPI emptyDir persistentVolumeClaim projected secret]
+privileged         true      [<em>]       RunAsAny    RunAsAny           RunAsAny    RunAsAny    <none>     false            [</em>]
+restricted         false     []        MustRunAs   MustRunAsRange     MustRunAs   RunAsAny    <none>     false            [configMap downwardAPI emptyDir persistentVolumeClaim projected secret]</p>
+<pre><code>
+#### Rebuilding docker image with non privileged User and Port
+
+In the previous section we try writing pod spec. but it won't work because port mapping . In this section we will rebuild the image with different privilege.
+
+just clone the following repo.
+
+</code></pre>
+
+<p>git clone https://github.com/initcron/example-voting-app.git
+cd example-voting-app/vote/</p>
+<pre><code>just edit Dockerfile
+
+</code></pre>
+
+<h1 id="using-official-python-runtime-base-image">Using official python runtime base image</h1>
+<p>FROM schoolofdevops/voteapp-python:v0.1.0</p>
+<p>ARG user=app
+ARG group=app
+ARG uid=1000
+ARG gid=1000</p>
+<h1 id="set-the-application-directory">Set the application directory</h1>
+<p>WORKDIR /app</p>
+<h1 id="install-our-requirementstxt">Install our requirements.txt</h1>
+<p>ADD requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt</p>
+<p>RUN addgroup -g ${gid} ${group} \
+    &amp;&amp; adduser  -u ${uid} -G ${group} -s /bin/sh -D ${user} \
+    &amp;&amp; chown -R ${user}:${group} /app</p>
+<h1 id="copy-our-code-from-the-current-folder-to-app-inside-the-container">Copy our code from the current folder to /app inside the container</h1>
+<p>ADD . /app</p>
+<h1 id="make-port-80-available-for-links-andor-publish">Make port 80 available for links and/or publish</h1>
+<p>EXPOSE 8080</p>
+<p>USER ${user}</p>
+<h1 id="define-our-command-to-be-run-when-launching-the-container">Define our command to be run when launching the container</h1>
+<p>CMD ["gunicorn", "app:app", "-b", "0.0.0.0:8080", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]</p>
+<pre><code>then build
+
+</code></pre>
+
+<p>docker build -t initcron/oc-vote:v1</p>
+<pre><code>
+then push image your docker hub registry .
+
+</code></pre>
+
+<p>docker push initcron/oc-vote:v1</p>
+<pre><code>then change pod spec.
+
+</code></pre>
+
+<p>apiVersion: v1
+kind: Pod
+metadata:
+  name: vote
+  labels:
+    app: python
+    role: vote
+    version: v1
+spec:
+  containers:
+    - name: app
+      image: initcron/oc-vote:v1</p>
+<pre><code>
+then run following CMD
+
+
+</code></pre>
+
+<p>oc apply -f vote-pod.yml</p>
+<pre><code>
+#### Pod operations -  connect with shell, check logs, attach,  delete
+This section we are looking about some of pod operation. start with following command.
+
+</code></pre>
+
+<p>oc get pods</p>
+<pre><code>[output]
+</code></pre>
+
+<p>NAME      READY     STATUS    RESTARTS   AGE
+vote      1/1       Running   14         54m</p>
+<pre><code></code></pre>
+
+<p>oc get pods -o wide</p>
+<pre><code>[output]
+</code></pre>
+
+<p>NAME      READY     STATUS    RESTARTS   AGE       IP           NODE
+vote      1/1       Running   14         55m       172.17.0.3   localhost</p>
+<pre><code>
+</code></pre>
+
+<p>oc descibe pod vote</p>
+<pre><code>[output]
+
+</code></pre>
+
+<p>Name:         vote
+Namespace:    instavote
+Node:         localhost/128.199.213.193
+Start Time:   Wed, 17 Oct 2018 12:59:34 +0000
+Labels:       app=python
+              role=vote
+              version=v1
+Annotations:  kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"python","role":"vote","version":"v1"},"name":"vote","namespace":"instavot...
+              openshift.io/scc=restricted
+Status:       Running
+IP:           172.17.0.3
+Containers:
+  app:
+    Container ID:   docker://e71c8b4e1f2da2b07a3fb030ae4d81e603d8d3764bb070a7aaef96bcab7c354e
+    Image:          initcron/oc-vote:v1
+    Image ID:       docker-pullable://initcron/oc-vote@sha256:b05f64d225a8671ecc09d22760a2c76bd65aaf50e12d00b31ab3b4fe6f377b06
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 17 Oct 2018 13:46:31 +0000
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Wed, 17 Oct 2018 13:41:54 +0000
+      Finished:     Wed, 17 Oct 2018 13:42:00 +0000
+    Ready:          True
+    Restart Count:  14
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-b4xlj (ro)
+Conditions:
+  Type           Status
+  Initialized    True
+  Ready          True
+  PodScheduled   True
+Volumes:
+  default-token-b4xlj:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-b4xlj
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     <none>
+Events:
+  Type     Reason     Age                  From                Message
+  ----     ------     ----                 ----                -------
+  Normal   Scheduled  56m                  default-scheduler   Successfully assigned vote to localhost
+  Normal   Pulled     54m (x5 over 56m)    kubelet, localhost  Container image "schoolofdevops/vote:v1" already present on machine
+  Normal   Created    54m (x5 over 56m)    kubelet, localhost  Created container
+  Normal   Started    54m (x5 over 56m)    kubelet, localhost  Started container
+  Warning  BackOff    11m (x197 over 56m)  kubelet, localhost  Back-off restarting failed container</p>
+<pre><code>use following command to go inside container.
+
+</code></pre>
+
+<p>oc exec -it vote sh</p>
+<pre><code></code></pre>
+
+<p>/app $ cat /etc/issue
+Welcome to Alpine Linux 3.4
+Kernel \r on an \m (\l)</p>
+<p>```</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

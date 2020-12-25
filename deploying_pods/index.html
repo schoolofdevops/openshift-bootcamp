@@ -13,18 +13,19 @@
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Launching Pods";
     var mkdocs_page_input_path = "deploying_pods.md";
-    var mkdocs_page_url = "/deploying_pods/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -35,10 +36,10 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../README/" class="icon icon-home"> Openshift Bootcamp</a>
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -49,7 +50,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../README/">Home</a>
+    <a class="" href="..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -74,6 +75,8 @@
             <li><a class="toctree-l3" href="#probes">Probes</a></li>
         
             <li><a class="toctree-l3" href="#resource-configs">Resource Configs</a></li>
+        
+            <li><a class="toctree-l3" href="#updating-security-context">Updating Security Context</a></li>
         
             <li><a class="toctree-l3" href="#launching-and-operating-a-pod">Launching and operating a Pod</a></li>
         
@@ -141,7 +144,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../README/">Openshift Bootcamp</a>
+        <a href="..">Openshift Bootcamp</a>
       </nav>
 
       
@@ -149,7 +152,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../README/">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
     
@@ -178,7 +181,7 @@
 <li>readinessProbe : Ready to Serve Traffic</li>
 </ul>
 <h3 id="resource-configs">Resource Configs</h3>
-<p>Each entity created with kubernetes is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.</p>
+<p>Each entity created with Openshift is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON.  Here is the syntax to create a YAML specification.</p>
 <p><strong>AKMS</strong> =&gt; Resource Configs Specs</p>
 <pre><code>apiVersion: v1
 kind:
@@ -219,6 +222,14 @@ spec:
         - containerPort: 80
 </code></pre>
 
+<h3 id="updating-security-context">Updating Security Context</h3>
+<p>To allow containers created with images with root user, security context needs to be edited. By default openshift restricts running any container which runs as root.</p>
+<pre><code>oc login -u system:admin
+
+oc edit scc restricted
+</code></pre>
+
+<p>Change the runAsUser.Type strategy to RunAsAny.</p>
 <h3 id="launching-and-operating-a-pod">Launching and operating a Pod</h3>
 <p>Syntax:</p>
 <pre><code> oc apply -f FILE
@@ -469,9 +480,8 @@ https://kubernetes.io/docs/concepts/configuration/assign-pod-node/</p>
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>

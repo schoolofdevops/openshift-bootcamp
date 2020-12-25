@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Deploying Vote&Redis withImages - Openshift Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Deploying Vote&Redis withImages";
+    var mkdocs_page_input_path = "Deploying_Vote&Redis_withImages.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openshift-bootcamp/">About the Course</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configuring Cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deploying_pods/">Launching Pods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../exposing_app_with_service/">Service Endpoints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rollouts-and-rollbacks/">Rollouts and Rollbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8. Using Configmaps and Secrets/">Using Configmaps and Secrets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. Kubernetes Autoscaling/">Auto Scaling Capacity with HPA</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. deploying_sample_app/">Mini Project</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Openshift Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Deploying Vote&Redis withImages</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="deploying-vote-and-redis-with-images-images-image-streams-router-configs">Deploying Vote and Redis with Images - Images, Image Streams, Router Configs</h3>
+<p>In this section we are talking about deploying the vote app with database redis using already build images. We are also talking about image Streams and Router config in the openshift.</p>
+<h4 id="setting-openshift-on-a-remote-fedora-server">Setting openshift on a remote Fedora server</h4>
+<p>in this section we are talking about how to set up openshift environment in  fedora operating system</p>
+<h5 id="system-requirements">System Requirements</h5>
+<ul>
+<li>
+<p>Physical or virtual system, or an instance running on a public or private IaaS.</p>
+</li>
+<li>
+<p>Base OS</p>
+</li>
+<li>Docker</li>
+<li>2 vCPU</li>
+<li>Minimum 8 GB RAM</li>
+<li>Minimum 15 GB hard disk space</li>
+<li>An additional minimum 15 GB unallocated space to be configured using docker-storage-setup</li>
+</ul>
+<p>use this link for <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#linux">installation</a> documents.</p>
+<p>In this case we need to install docker use the following script for docker installation for fedora.</p>
+<pre><code>#!/bin/bash
+
+sudo dnf remove -y docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install -y docker-ce
+sudo systemctl start docker
+
+I: &quot;Validating dokcer installation...&quot;
+sudo docker run hello-world
+
+</code></pre>
+
+<p>edit the /etc/docker/daemon.json file and add the following</p>
+<pre><code>cat &gt; /ete/docker/daemon.json
+{
+   &quot;insecure-registries&quot;: [
+     &quot;172.30.0.0/16&quot;
+   ]
+}
+</code></pre>
+
+<p>After editing the config, reload systemd and restart the Docker daemon.</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+
+<p>Determine the Docker bridge network container subnet:</p>
+<pre><code>docker network inspect -f &quot;{{range .IPAM.Config }}{{ .Subnet }}{{end}}&quot; bridge
+
+</code></pre>
+
+<p>then download the <a href="https://github.com/openshift/origin/releases">openshift</a></p>
+<pre><code>wget -c https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz
+</code></pre>
+
+<pre><code>tar -xvf openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz
+cd openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit/
+
+mv oc /usr/local/bin/
+</code></pre>
+
+<pre><code>which oc
+</code></pre>
+
+<p>[output]</p>
+<pre><code>/usr/local/bin/oc
+</code></pre>
+
+<pre><code>oc cluster up --public-hostname=[host_ip]
+</code></pre>
+
+<h4 id="deploying-with-image">Deploying with image</h4>
+<p>In this section we are talking about deploying app using existing image. just check the openshift status.</p>
+<pre><code>oc ststus
+</code></pre>
+
+<p>[output]</p>
+<pre><code>In project demo on server https://128.199.213.193:8443
+
+http://demoapp-demo.128.199.213.193.nip.io to pod port 8080-tcp (svc/demoapp)
+  dc/demoapp deploys istag/demoapp:latest &lt;-
+    bc/demoapp source builds https://github.com/devopsdemoapps/devops-demo-app.git#master on openshift/php:7.1
+    deployment #2 deployed 2 days ago - 5 pods
+    deployment #1 deployed 2 days ago
+
+svc/mariadb - 172.30.193.105:3306
+  dc/mariadb deploys openshift/mysql:5.7
+    deployment #1 failed 2 days ago: config change
+
+
+3 infos identified, use 'oc status -v' to see details.
+</code></pre>
+
+<p>create the project using  following command.</p>
+<pre><code>oc new-project instavote --display-name=&quot;instavote app&quot; --description=&quot;Sample voting application&quot;
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Now using project &quot;instavote&quot; on server &quot;https://128.199.213.193:8443&quot;.
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git
+
+to build a new example application in Ruby.
+</code></pre>
+
+<p>then check the projects.</p>
+<pre><code>oc get projects
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME        DISPLAY NAME    STATUS
+demo        demo            Active
+instavote   instavote app   Active
+myproject   My Project      Active
+</code></pre>
+
+<p>deploy the vote application using existing image form docker hub registries.</p>
+<pre><code>initcron/oc-vote:v1
+</code></pre>
+
+<p>click on your created project instavote then click on overview and click on deploy with image. provide some information on this page</p>
+<p><img alt="" src="../images/oc1.png" /></p>
+<p>here , Provide name, environment variables and labels.
+then click on deploy.</p>
+<h4 id="exposing-vote-app-with-router">Exposing vote app with Router</h4>
+<p>In this section we are talking about how to expose application with router.
+  just check pods, replicas and deployment config.</p>
+<pre><code>oc get pods,rc,dc
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME                  READY     STATUS    RESTARTS   AGE
+pod/oc-vote-2-7ckd5   1/1       Running   0          32s
+pod/oc-vote-2-jwp45   1/1       Running   0          9m
+pod/oc-vote-2-qkdrc   1/1       Running   0          33s
+pod/oc-vote-2-rlp25   1/1       Running   0          32s
+
+NAME                              DESIRED   CURRENT   READY     AGE
+replicationcontroller/oc-vote-1   0         0         0         10m
+replicationcontroller/oc-vote-2   4         4         4         9m
+
+NAME                                         REVISION   DESIRED   CURRENT   TRIGGERED BY
+deploymentconfig.apps.openshift.io/oc-vote   2          4         4         config,image(oc-vote:v1)
+</code></pre>
+
+<pre><code>oc get svc
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE
+oc-vote   ClusterIP   172.30.206.1   &lt;none&gt;        80/TCP,8080/TCP   12m
+</code></pre>
+
+<p>get endpoints using following command.</p>
+<pre><code>oc get endpoints
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME      ENDPOINTS                                                  AGE
+oc-vote   172.17.0.11:80,172.17.0.12:80,172.17.0.13:80 + 5 more...   14m
+</code></pre>
+
+<p>get image stream using following command.</p>
+<pre><code>oc get is
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME      DOCKER REPO                         TAGS      UPDATED
+oc-vote   172.30.1.1:5000/instavote/oc-vote   v1        16 minutes ago
+</code></pre>
+
+<pre><code>oc describe is/oc-vote
+Name:           oc-vote
+Namespace:      instavote
+Created:        17 minutes ago
+Labels:         app=oc-vote
+            role=vote
+Annotations:        openshift.io/image.dockerRepositoryCheck=2018-10-28T07:12:40Z
+Docker Pull Spec:   172.30.1.1:5000/instavote/oc-vote
+Image Lookup:       local=false
+Unique Images:      1
+Tags:           1
+
+v1
+  tagged from initcron/oc-vote:v1
+
+  * initcron/oc-vote@sha256:b05f64d225a8671ecc09d22760a2c76bd65aaf50e12d00b31ab3b4fe6f377b06
+      17 minutes ago
+</code></pre>
+
+<p>go to your openshift UI and click on application-&gt;routes.</p>
+<p><img alt="" src="../images/oc2.png" /></p>
+<p>fill all the information</p>
+<h4 id="introduction-to-oc-new-app-command">Introduction to oc new-app command</h4>
+<p>In this section we are talking about to oc new-app command.</p>
+<pre><code>oc get all -l app=oc-vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME                  READY     STATUS    RESTARTS   AGE
+pod/oc-vote-2-7ckd5   1/1       Running   0          24m
+pod/oc-vote-2-jwp45   1/1       Running   0          33m
+pod/oc-vote-2-qkdrc   1/1       Running   0          24m
+pod/oc-vote-2-rlp25   1/1       Running   0          24m
+
+NAME                              DESIRED   CURRENT   READY     AGE
+replicationcontroller/oc-vote-1   0         0         0         34m
+replicationcontroller/oc-vote-2   4         4         4         33m
+
+NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE
+service/oc-vote   ClusterIP   172.30.206.1   &lt;none&gt;        80/TCP,8080/TCP   34m
+
+NAME                                         REVISION   DESIRED   CURRENT   TRIGGERED BY
+deploymentconfig.apps.openshift.io/oc-vote   2          4         4         config,image(oc-vote:v1)
+
+NAME                                     DOCKER REPO                         TAGS      UPDATED
+imagestream.image.openshift.io/oc-vote   172.30.1.1:5000/instavote/oc-vote   v1        34 minutes ago
+
+NAME                               HOST/PORT                                  PATH      SERVICES   PORT       TERMINATION     WILDCARD
+route.route.openshift.io/oc-vote   oc-vote-instavote.128.199.213.193.nip.io             oc-vote    8080-tcp   edge/Redirect   None
+</code></pre>
+
+<pre><code>oc delete all -l app=oc-vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>pod &quot;oc-vote-2-7ckd5&quot; deleted
+pod &quot;oc-vote-2-jwp45&quot; deleted
+pod &quot;oc-vote-2-qkdrc&quot; deleted
+pod &quot;oc-vote-2-rlp25&quot; deleted
+replicationcontroller &quot;oc-vote-1&quot; deleted
+replicationcontroller &quot;oc-vote-2&quot; deleted
+service &quot;oc-vote&quot; deleted
+deploymentconfig.apps.openshift.io &quot;oc-vote&quot; deleted
+imagestream.image.openshift.io &quot;oc-vote&quot; deleted
+route.route.openshift.io &quot;oc-vote&quot; deleted
+</code></pre>
+
+<pre><code>oc new-app --list
+</code></pre>
+
+<p>search template</p>
+<pre><code>oc new-app --search --template=ruby --output=yaml
+</code></pre>
+
+<p>[output]</p>
+<pre><code>apiVersion: v1
+items: []
+kind: List
+metadata: {}
+</code></pre>
+
+<h4 id="setup-vote-app-with-using-oc-cli-utility">Setup vote app with using oc cli utility</h4>
+<p>In this section we are redeploying vote application using oc cli.</p>
+<pre><code>oc new-app --docker-image=initcron/oc-vote:v1 --name=vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Found Docker image c97dc33 (2 months old) from Docker Hub for &quot;initcron/oc-vote:v1&quot;
+
+    * An image stream will be created as &quot;vote:v1&quot; that will track this image
+    * This image will be deployed in deployment config &quot;vote&quot;
+    * Ports 80/tcp, 8080/tcp will be load balanced by service &quot;vote&quot;
+      * Other containers can access this service through the hostname &quot;vote&quot;
+
+--&gt; Creating resources ...
+    imagestream &quot;vote&quot; created
+    deploymentconfig &quot;vote&quot; created
+    service &quot;vote&quot; created
+--&gt; Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/vote'
+    Run 'oc status' to view your app.
+</code></pre>
+
+<pre><code>oc status
+</code></pre>
+
+<p>[output]</p>
+<pre><code>In project instavote app (instavote) on server https://128.199.213.193:8443
+
+svc/vote - 172.30.83.46 ports 80, 8080
+  dc/vote deploys istag/vote:v1
+    deployment #1 deployed about a minute ago - 1 pod
+
+
+2 infos identified, use 'oc status -v' to see details.
+</code></pre>
+
+<pre><code>oc expose svc/vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>route &quot;vote&quot; exposed
+</code></pre>
+
+<pre><code>oc status
+</code></pre>
+
+<p>[output]</p>
+<pre><code>In project instavote app (instavote) on server https://128.199.213.193:8443
+
+http://vote-instavote.128.199.213.193.nip.io to pod port 80-tcp (svc/vote)
+  dc/vote deploys istag/vote:v1
+    deployment #1 deployed 6 minutes ago - 1 pod
+
+
+2 infos identified, use 'oc status -v' to see details.
+</code></pre>
+
+<pre><code>oc get routes
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME      HOST/PORT                               PATH      SERVICES   PORT      TERMINATION   WILDCARD
+vote      vote-instavote.128.199.213.193.nip.io             vote       80-tcp                  None
+</code></pre>
+
+<pre><code>oc delete route/vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>route.route.openshift.io &quot;vote&quot; deleted
+</code></pre>
+
+<pre><code>oc get svc
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE
+vote      ClusterIP   172.30.83.46   &lt;none&gt;        80/TCP,8080/TCP   11m
+</code></pre>
+
+<pre><code>oc expose service vote --port=8080
+</code></pre>
+
+<p>[output]</p>
+<pre><code>route &quot;vote&quot; exposed
+</code></pre>
+
+<h4 id="using-annotations-to-change-router-configurations">Using annotations to change Router configurations</h4>
+<p>In this section we are talking about how to change Router configurations.  </p>
+<pre><code>oc scale --replicas=4 dc/vote
+</code></pre>
+
+<p>[output]</p>
+<pre><code>deploymentconfig.apps.openshift.io &quot;vote&quot; scaled
+</code></pre>
+
+<p>we need to edit <img alt="route" src="../images/oc3.png" /></p>
+<p>add following line</p>
+<pre><code>haproxy.router.openshift.io/disble_cookies: 'true'
+</code></pre>
+
+<h4 id="deploying-redis-and-connecting-it-woth-the-vote-frontend">Deploying Redis and connecting it woth the vote frontend</h4>
+<p>In this section we are talking about database connectivity of our vote frontend application. We have already deployed voted application. we will connect the database that application. we will use redis as backend.</p>
+<p>use the following command to redis deployment.</p>
+<pre><code>oc new-app --name redis --docker-image=redis:alpine
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Found Docker image 05635ee (9 days old) from Docker Hub for &quot;redis:alpine&quot;
+
+    * An image stream will be created as &quot;redis:alpine&quot; that will track this image
+    * This image will be deployed in deployment config &quot;redis&quot;
+    * Port 6379/tcp will be load balanced by service &quot;redis&quot;
+      * Other containers can access this service through the hostname &quot;redis&quot;
+    * This image declares volumes and will default to use non-persistent, host-local storage.
+      You can add persistent volumes later by running 'volume dc/redis --add ...'
+    * WARNING: Image &quot;redis:alpine&quot; runs as the 'root' user which may not be permitted by your cluster administrator
+
+--&gt; Creating resources ...
+    imagestream &quot;redis&quot; created
+    deploymentconfig &quot;redis&quot; created
+    service &quot;redis&quot; created
+--&gt; Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/redis'
+    Run 'oc status' to view your app.
+</code></pre>
+
+<h4 id="update-environment-vars-and-images-with-oc-set">Update environment vars and images with oc set</h4>
+<p>In this section we talking about how update environment variables using oc cli. We have already deployed vote application we will change env for vote application. we use the following command for that.</p>
+<pre><code>oc set env dc/vote OPTION_A=myoption
+</code></pre>
+
+<p>[output]</p>
+<pre><code>deploymentconfig &quot;vote&quot; updated
+</code></pre>
+
+<pre><code>oc get is
+oc get istag
+</code></pre>
+
+<p>update version of application.</p>
+<pre><code>oc set image dc/vote vote=initcron/oc-vote:v2
+</code></pre>
+
+<p>[output]</p>
+<pre><code>deploymentconfig &quot;vote&quot; image updated
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

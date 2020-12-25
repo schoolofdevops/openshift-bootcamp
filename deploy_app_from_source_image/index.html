@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Deploy app from source image - Openshift Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Deploy app from source image";
+    var mkdocs_page_input_path = "deploy_app_from_source_image.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openshift-bootcamp/">About the Course</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configuring Cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deploying_pods/">Launching Pods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../exposing_app_with_service/">Service Endpoints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rollouts-and-rollbacks/">Rollouts and Rollbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8. Using Configmaps and Secrets/">Using Configmaps and Secrets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. Kubernetes Autoscaling/">Auto Scaling Capacity with HPA</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. deploying_sample_app/">Mini Project</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Openshift Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Deploy app from source image</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="deploying-apps-from-source-template-dockerfile-s2i-buildersbuild-configs">Deploying apps from Source, Template,  Dockerfile - S2I Builders,Build Configs</h3>
+<h4 id="launching-demo-app-with-source-strategy">Launching demo app with source strategy</h4>
+<p>In this section we are talking about how to deploy application using source. We have already deployed vote frontend application. In this section we are deploying result application and database. We will start with result application which is nodeJs application. First we deploy sample devops demo application which php application for practice. we will deploy this application using oc cli.</p>
+<pre><code>oc new-app https://github.com/devopsdemoapps/devops-demo-app.git
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Found image 9dd8c80 (2 weeks old) in image stream &quot;openshift/php&quot; under tag &quot;7.1&quot; for &quot;php&quot;
+
+    Apache 2.4 with PHP 7.1
+    -----------------------
+    PHP 7.1 available as container is a base platform for building and running various PHP 7.1 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
+
+    Tags: builder, php, php71, rh-php71
+
+    * The source repository appears to match: php
+    * A source build using source code from https://github.com/devopsdemoapps/devops-demo-app.git will be created
+      * The resulting image will be pushed to image stream &quot;devops-demo-app:latest&quot;
+      * Use 'start-build' to trigger a new build
+    * This image will be deployed in deployment config &quot;devops-demo-app&quot;
+    * Ports 8080/tcp, 8443/tcp will be load balanced by service &quot;devops-demo-app&quot;
+      * Other containers can access this service through the hostname &quot;devops-demo-app&quot;
+
+--&gt; Creating resources ...
+    imagestream &quot;devops-demo-app&quot; created
+    buildconfig &quot;devops-demo-app&quot; created
+    deploymentconfig &quot;devops-demo-app&quot; created
+    service &quot;devops-demo-app&quot; created
+--&gt; Success
+    Build scheduled, use 'oc logs -f bc/devops-demo-app' to track its progress.
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/devops-demo-app'
+    Run 'oc status' to view your app.
+</code></pre>
+
+<p>we need to expose that application using following command.</p>
+<pre><code>oc expose svc/devops-demo-app
+</code></pre>
+
+<p>[output]</p>
+<pre><code>route &quot;devops-demo-app&quot; exposed
+</code></pre>
+
+<p>check the status of application</p>
+<pre><code>oc status
+</code></pre>
+
+<p>[output]</p>
+<pre><code>In project instavote app (instavote) on server https://128.199.213.193:8443
+
+http://devops-demo-app-instavote.128.199.213.193.nip.io to pod port 8080-tcp (svc/devops-demo-app)
+  dc/devops-demo-app deploys istag/devops-demo-app:latest &lt;-
+    bc/devops-demo-app source builds https://github.com/devopsdemoapps/devops-demo-app.git on openshift/php:7.1
+      build #1 failed about a minute ago - 5eb913a: v2 (Gourav Shah &lt;gs@initcron.org&gt;)
+    deployment #1 waiting on image or update
+
+svc/redis - 172.30.57.198:6379
+  dc/redis deploys istag/redis:alpine
+    deployment #2 deployed 14 minutes ago - 1 pod
+    deployment #1 failed 2 hours ago: config change
+
+http://vote-instavote.128.199.213.193.nip.io to pod port 8080 (svc/vote)
+  dc/vote deploys istag/vote:v1
+    deployment #2 deployed 14 minutes ago - 4 pods
+    deployment #1 failed 2 hours ago: config change
+</code></pre>
+
+<h4 id="s2i-builder-primer">S2I Builder Primer</h4>
+<p>In this we are talking about how to builds nodeJs application that is result. We are also talking about openshift Builder.</p>
+<p>search nodeJs stream in openshift.</p>
+<pre><code>oc new-app --search nodejs
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Templates (oc new-app --template=&lt;template&gt;)
+-----
+nodejs-mongo-persistent
+  Project: openshift
+  An example Node.js application with a MongoDB database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.
+
+Image streams (oc new-app --image-stream=&lt;image-stream&gt; [--code=&lt;source&gt;])
+-----
+nodejs
+  Project: openshift
+  Tags:    6, 8, latest
+</code></pre>
+
+<pre><code>oc get is
+</code></pre>
+
+<p>[ouput]</p>
+<pre><code>NAME              DOCKER REPO                                 TAGS      UPDATED
+redis             172.30.1.1:5000/instavote/redis             alpine    22 hours ago
+vote              172.30.1.1:5000/instavote/vote              v1        23 hours ago
+</code></pre>
+
+<p>list of image stream using namespace openshift</p>
+<pre><code>oc get is -n openshift
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME         DOCKER REPO                            TAGS                           UPDATED
+dotnet       172.30.1.1:5000/openshift/dotnet       2.0,latest                     11 days ago
+httpd        172.30.1.1:5000/openshift/httpd        2.4,latest                     11 days ago
+jenkins      172.30.1.1:5000/openshift/jenkins      1,2,latest                     11 days ago
+mariadb      172.30.1.1:5000/openshift/mariadb      latest,10.1,10.2               11 days ago
+mongodb      172.30.1.1:5000/openshift/mongodb      3.2,3.4,latest + 2 more...     11 days ago
+mysql        172.30.1.1:5000/openshift/mysql        5.5,5.6,5.7 + 1 more...        11 days ago
+nginx        172.30.1.1:5000/openshift/nginx        1.10,1.12,1.8 + 1 more...      11 days ago
+nodejs       172.30.1.1:5000/openshift/nodejs       0.10,4,6 + 2 more...           11 days ago
+perl         172.30.1.1:5000/openshift/perl         5.16,5.20,5.24 + 1 more...     11 days ago
+php          172.30.1.1:5000/openshift/php          5.5,5.6,7.0 + 2 more...        11 days ago
+postgresql   172.30.1.1:5000/openshift/postgresql   9.6,latest,9.2 + 2 more...     11 days ago
+python       172.30.1.1:5000/openshift/python       2.7,3.3,3.4 + 3 more...        11 days ago
+redis        172.30.1.1:5000/openshift/redis        latest,3.2                     11 days ago
+ruby         172.30.1.1:5000/openshift/ruby         2.3,2.4,2.5 + 3 more...        11 days ago
+wildfly      172.30.1.1:5000/openshift/wildfly      latest,10.0,10.1 + 4 more...   11 days ago
+</code></pre>
+
+<h4 id="deploying-results-app-with-nodejs-s2i-builder">Deploying results app with Nodejs S2I Builder</h4>
+<p>In the section we are deploy node application using custom builder from the images stream nodeJs and tag 8. Search nodejs image using following command.</p>
+<pre><code>oc new-app --search nodejs
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Templates (oc new-app --template=&lt;template&gt;)
+-----
+nodejs-mongo-persistent
+  Project: openshift
+  An example Node.js application with a MongoDB database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.
+
+Image streams (oc new-app --image-stream=&lt;image-stream&gt; [--code=&lt;source&gt;])
+-----
+nodejs
+  Project: openshift
+  Tags:    6, 8, latest
+</code></pre>
+
+<p>Then, Deploy the result application.</p>
+<pre><code>oc new-app nodejs:8~https://github.com/initcron/example-voting-app.git --context-dir='result' --name=result
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Found image a603093 (2 weeks old) in image stream &quot;openshift/nodejs&quot; under tag &quot;8&quot; for &quot;nodejs:8&quot;
+
+    Node.js 8
+    ---------
+    Node.js 8 available as container is a base platform for building and running various Node.js 8 applications and frameworks. Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+
+    Tags: builder, nodejs, nodejs8
+
+    * A source build using source code from https://github.com/initcron/example-voting-app.git will be created
+      * The resulting image will be pushed to image stream &quot;result:latest&quot;
+      * Use 'start-build' to trigger a new build
+    * This image will be deployed in deployment config &quot;result&quot;
+    * Port 8080/tcp will be load balanced by service &quot;result&quot;
+      * Other containers can access this service through the hostname &quot;result&quot;
+
+--&gt; Creating resources ...
+    imagestream &quot;result&quot; created
+    buildconfig &quot;result&quot; created
+    deploymentconfig &quot;result&quot; created
+    service &quot;result&quot; created
+--&gt; Success
+    Build scheduled, use 'oc logs -f bc/result' to track its progress.
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/result'
+    Run 'oc status' to view your app.
+</code></pre>
+
+<p>Then, Expose the services</p>
+<pre><code>oc expose svc/result
+</code></pre>
+
+<p>[output]</p>
+<pre><code>route &quot;result&quot; exposed
+</code></pre>
+
+<p>show the build in oc including</p>
+<pre><code>oc get bc
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME              TYPE      FROM      LATEST
+devops-demo-app   Source    Git       1
+result            Source    Git       1
+</code></pre>
+
+<h4 id="launching-db-with-a-template-and-parameters">Launching db with a template and parameters</h4>
+<p>In this section we are talking about result application database. We are connecting database to the result application. Database is postgresql which result connect.
+We will use the Template for postgresql. Just search postgresql database  on openshift using following command.</p>
+<pre><code>oc new-app --search postgres
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Templates (oc new-app --template=&lt;template&gt;)
+-----
+postgresql-persistent
+  Project: openshift
+  PostgreSQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
+
+NOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.
+
+Image streams (oc new-app --image-stream=&lt;image-stream&gt; [--code=&lt;source&gt;])
+-----
+postgresql
+  Project: openshift
+  Tags:    9.5, 9.6, latest
+
+Docker images (oc new-app --docker-image=&lt;docker-image&gt; [--code=&lt;source&gt;])
+-----
+postgres
+  Registry: Docker Hub
+  Tags:     latest
+</code></pre>
+
+<p>The , See available template in openshit.</p>
+<pre><code>oc get templates -n openshift
+</code></pre>
+
+<p>[output]</p>
+<pre><code>NAME                       DESCRIPTION                                                                        PARAMETERS        OBJECTS
+cakephp-mysql-persistent   An example CakePHP application with a MySQL database. For more information ab...   20 (4 blank)      9
+dancer-mysql-persistent    An example Dancer application with a MySQL database. For more information abo...   17 (5 blank)      9
+django-psql-persistent     An example Django application with a PostgreSQL database. For more informatio...   20 (5 blank)      9
+jenkins-ephemeral          Jenkins service, without persistent storage....                                    7 (all set)       6
+jenkins-pipeline-example   This example showcases the new Jenkins Pipeline integration in OpenShift,...       16 (4 blank)      8
+mariadb-persistent         MariaDB database service, with persistent storage. For more information about...   9 (3 generated)   4
+mongodb-persistent         MongoDB database service, with persistent storage. For more information about...   9 (3 generated)   4
+mysql-persistent           MySQL database service, with persistent storage. For more information about u...   9 (3 generated)   4
+nodejs-mongo-persistent    An example Node.js application with a MongoDB database. For more information...    19 (4 blank)      9
+postgresql-persistent      PostgreSQL database service, with persistent storage. For more information ab...   8 (2 generated)   4
+rails-pgsql-persistent     An example Rails application with a PostgreSQL database. For more information...   21 (4 blank)      9
+</code></pre>
+
+<p>describe postgres templates</p>
+<pre><code>oc describe template postgresql-persistent -n openshift
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Name:       postgresql-persistent
+Namespace:  openshift
+Created:    11 days ago
+Labels:     &lt;none&gt;
+Description:    PostgreSQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
+
+        NOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.
+Annotations:    iconClass=icon-postgresql
+        kubectl.kubernetes.io/last-applied-configuration={&quot;apiVersion&quot;:&quot;template.openshift.io/v1&quot;,&quot;kind&quot;:&quot;Template&quot;,&quot;labels&quot;:{&quot;template&quot;:&quot;postgresql-persistent-template&quot;},&quot;message&quot;:&quot;The following service(s) have been created in your project: ${DATABASE_SERVICE_NAME}.\n\n       Username: ${POSTGRESQL_USER}\n       Password: ${POSTGRESQL_PASSWORD}\n  Database Name: ${POSTGRESQL_DATABASE}\n Connection URL: postgresql://${DATABASE_SERVICE_NAME}:5432/\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{&quot;description&quot;:&quot;PostgreSQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.\n\nNOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.&quot;,&quot;iconClass&quot;:&quot;icon-postgresql&quot;,&quot;openshift.io/display-name&quot;:&quot;PostgreSQL&quot;,&quot;openshift.io/documentation-url&quot;:&quot;https://docs.openshift.org/latest/using_images/db_images/postgresql.html&quot;,&quot;openshift.io/long-description&quot;:&quot;This template provides a standalone PostgreSQL server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.&quot;,&quot;openshift.io/provider-display-name&quot;:&quot;Red Hat, Inc.&quot;,&quot;openshift.io/support-url&quot;:&quot;https://access.redhat.com&quot;,&quot;tags&quot;:&quot;database,postgresql&quot;},&quot;name&quot;:&quot;postgresql-persistent&quot;,&quot;namespace&quot;:&quot;openshift&quot;},&quot;objects&quot;:[{&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;Secret&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{&quot;template.openshift.io/expose-database_name&quot;:&quot;{.data['database-name']}&quot;,&quot;template.openshift.io/expose-password&quot;:&quot;{.data['database-password']}&quot;,&quot;template.openshift.io/expose-username&quot;:&quot;{.data['database-user']}&quot;},&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;stringData&quot;:{&quot;database-name&quot;:&quot;${POSTGRESQL_DATABASE}&quot;,&quot;database-password&quot;:&quot;${POSTGRESQL_PASSWORD}&quot;,&quot;database-user&quot;:&quot;${POSTGRESQL_USER}&quot;}},{&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;Service&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{&quot;template.openshift.io/expose-uri&quot;:&quot;postgres://{.spec.clusterIP}:{.spec.ports[?(.name==\&quot;postgresql\&quot;)].port}&quot;},&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;spec&quot;:{&quot;ports&quot;:[{&quot;name&quot;:&quot;postgresql&quot;,&quot;nodePort&quot;:0,&quot;port&quot;:5432,&quot;protocol&quot;:&quot;TCP&quot;,&quot;targetPort&quot;:5432}],&quot;selector&quot;:{&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;sessionAffinity&quot;:&quot;None&quot;,&quot;type&quot;:&quot;ClusterIP&quot;},&quot;status&quot;:{&quot;loadBalancer&quot;:{}}},{&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;PersistentVolumeClaim&quot;,&quot;metadata&quot;:{&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;spec&quot;:{&quot;accessModes&quot;:[&quot;ReadWriteOnce&quot;],&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;${VOLUME_CAPACITY}&quot;}}}},{&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;DeploymentConfig&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{&quot;template.alpha.openshift.io/wait-for-ready&quot;:&quot;true&quot;},&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;spec&quot;:{&quot;replicas&quot;:1,&quot;selector&quot;:{&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;},&quot;strategy&quot;:{&quot;type&quot;:&quot;Recreate&quot;},&quot;template&quot;:{&quot;metadata&quot;:{&quot;labels&quot;:{&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;}},&quot;spec&quot;:{&quot;containers&quot;:[{&quot;capabilities&quot;:{},&quot;env&quot;:[{&quot;name&quot;:&quot;POSTGRESQL_USER&quot;,&quot;valueFrom&quot;:{&quot;secretKeyRef&quot;:{&quot;key&quot;:&quot;database-user&quot;,&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;}}},{&quot;name&quot;:&quot;POSTGRESQL_PASSWORD&quot;,&quot;valueFrom&quot;:{&quot;secretKeyRef&quot;:{&quot;key&quot;:&quot;database-password&quot;,&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;}}},{&quot;name&quot;:&quot;POSTGRESQL_DATABASE&quot;,&quot;valueFrom&quot;:{&quot;secretKeyRef&quot;:{&quot;key&quot;:&quot;database-name&quot;,&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;}}}],&quot;image&quot;:&quot; &quot;,&quot;imagePullPolicy&quot;:&quot;IfNotPresent&quot;,&quot;livenessProbe&quot;:{&quot;exec&quot;:{&quot;command&quot;:[&quot;/usr/libexec/check-container&quot;,&quot;--live&quot;]},&quot;initialDelaySeconds&quot;:120,&quot;timeoutSeconds&quot;:10},&quot;name&quot;:&quot;postgresql&quot;,&quot;ports&quot;:[{&quot;containerPort&quot;:5432,&quot;protocol&quot;:&quot;TCP&quot;}],&quot;readinessProbe&quot;:{&quot;exec&quot;:{&quot;command&quot;:[&quot;/usr/libexec/check-container&quot;]},&quot;initialDelaySeconds&quot;:5,&quot;timeoutSeconds&quot;:1},&quot;resources&quot;:{&quot;limits&quot;:{&quot;memory&quot;:&quot;${MEMORY_LIMIT}&quot;}},&quot;securityContext&quot;:{&quot;capabilities&quot;:{},&quot;privileged&quot;:false},&quot;terminationMessagePath&quot;:&quot;/dev/termination-log&quot;,&quot;volumeMounts&quot;:[{&quot;mountPath&quot;:&quot;/var/lib/pgsql/data&quot;,&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}-data&quot;}]}],&quot;dnsPolicy&quot;:&quot;ClusterFirst&quot;,&quot;restartPolicy&quot;:&quot;Always&quot;,&quot;volumes&quot;:[{&quot;name&quot;:&quot;${DATABASE_SERVICE_NAME}-data&quot;,&quot;persistentVolumeClaim&quot;:{&quot;claimName&quot;:&quot;${DATABASE_SERVICE_NAME}&quot;}}]}},&quot;triggers&quot;:[{&quot;imageChangeParams&quot;:{&quot;automatic&quot;:true,&quot;containerNames&quot;:[&quot;postgresql&quot;],&quot;from&quot;:{&quot;kind&quot;:&quot;ImageStreamTag&quot;,&quot;name&quot;:&quot;postgresql:${POSTGRESQL_VERSION}&quot;,&quot;namespace&quot;:&quot;${NAMESPACE}&quot;},&quot;lastTriggeredImage&quot;:&quot;&quot;},&quot;type&quot;:&quot;ImageChange&quot;},{&quot;type&quot;:&quot;ConfigChange&quot;}]},&quot;status&quot;:{}}],&quot;parameters&quot;:[{&quot;description&quot;:&quot;Maximum amount of memory the container can use.&quot;,&quot;displayName&quot;:&quot;Memory Limit&quot;,&quot;name&quot;:&quot;MEMORY_LIMIT&quot;,&quot;required&quot;:true,&quot;value&quot;:&quot;512Mi&quot;},{&quot;description&quot;:&quot;The OpenShift Namespace where the ImageStream resides.&quot;,&quot;displayName&quot;:&quot;Namespace&quot;,&quot;name&quot;:&quot;NAMESPACE&quot;,&quot;value&quot;:&quot;openshift&quot;},{&quot;description&quot;:&quot;The name of the OpenShift Service exposed for the database.&quot;,&quot;displayName&quot;:&quot;Database Service Name&quot;,&quot;name&quot;:&quot;DATABASE_SERVICE_NAME&quot;,&quot;required&quot;:true,&quot;value&quot;:&quot;postgresql&quot;},{&quot;description&quot;:&quot;Username for PostgreSQL user that will be used for accessing the database.&quot;,&quot;displayName&quot;:&quot;PostgreSQL Connection Username&quot;,&quot;from&quot;:&quot;user[A-Z0-9]{3}&quot;,&quot;generate&quot;:&quot;expression&quot;,&quot;name&quot;:&quot;POSTGRESQL_USER&quot;,&quot;required&quot;:true},{&quot;description&quot;:&quot;Password for the PostgreSQL connection user.&quot;,&quot;displayName&quot;:&quot;PostgreSQL Connection Password&quot;,&quot;from&quot;:&quot;[a-zA-Z0-9]{16}&quot;,&quot;generate&quot;:&quot;expression&quot;,&quot;name&quot;:&quot;POSTGRESQL_PASSWORD&quot;,&quot;required&quot;:true},{&quot;description&quot;:&quot;Name of the PostgreSQL database accessed.&quot;,&quot;displayName&quot;:&quot;PostgreSQL Database Name&quot;,&quot;name&quot;:&quot;POSTGRESQL_DATABASE&quot;,&quot;required&quot;:true,&quot;value&quot;:&quot;sampledb&quot;},{&quot;description&quot;:&quot;Volume space available for data, e.g. 512Mi, 2Gi.&quot;,&quot;displayName&quot;:&quot;Volume Capacity&quot;,&quot;name&quot;:&quot;VOLUME_CAPACITY&quot;,&quot;required&quot;:true,&quot;value&quot;:&quot;1Gi&quot;},{&quot;description&quot;:&quot;Version of PostgreSQL image to be used (9.4, 9.5, 9.6 or latest).&quot;,&quot;displayName&quot;:&quot;Version of PostgreSQL Image&quot;,&quot;name&quot;:&quot;POSTGRESQL_VERSION&quot;,&quot;required&quot;:true,&quot;value&quot;:&quot;9.6&quot;}]}
+
+    openshift.io/display-name=PostgreSQL
+    openshift.io/documentation-url=https://docs.openshift.org/latest/using_images/db_images/postgresql.html
+    openshift.io/long-description=This template provides a standalone PostgreSQL server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.
+    openshift.io/provider-display-name=Red Hat, Inc.
+    openshift.io/support-url=https://access.redhat.com
+    tags=database,postgresql
+
+Parameters:
+    Name:       MEMORY_LIMIT
+    Display Name:   Memory Limit
+    Description:    Maximum amount of memory the container can use.
+    Required:       true
+    Value:      512Mi
+
+    Name:       NAMESPACE
+    Display Name:   Namespace
+    Description:    The OpenShift Namespace where the ImageStream resides.
+    Required:       false
+    Value:      openshift
+
+    Name:       DATABASE_SERVICE_NAME
+    Display Name:   Database Service Name
+    Description:    The name of the OpenShift Service exposed for the database.
+    Required:       true
+    Value:      postgresql
+
+    Name:       POSTGRESQL_USER
+    Display Name:   PostgreSQL Connection Username
+    Description:    Username for PostgreSQL user that will be used for accessing the database.
+    Required:       true
+    Generated:      expression
+    From:       user[A-Z0-9]{3}
+
+    Name:       POSTGRESQL_PASSWORD
+    Display Name:   PostgreSQL Connection Password
+    Description:    Password for the PostgreSQL connection user.
+    Required:       true
+    Generated:      expression
+    From:       [a-zA-Z0-9]{16}
+
+    Name:       POSTGRESQL_DATABASE
+    Display Name:   PostgreSQL Database Name
+    Description:    Name of the PostgreSQL database accessed.
+    Required:       true
+    Value:      sampledb
+
+    Name:       VOLUME_CAPACITY
+    Display Name:   Volume Capacity
+    Description:    Volume space available for data, e.g. 512Mi, 2Gi.
+    Required:       true
+    Value:      1Gi
+
+    Name:       POSTGRESQL_VERSION
+    Display Name:   Version of PostgreSQL Image
+    Description:    Version of PostgreSQL image to be used (9.4, 9.5, 9.6 or latest).
+    Required:       true
+    Value:      9.6
+
+
+Object Labels:  template=postgresql-persistent-template
+
+Message:    The following service(s) have been created in your project: ${DATABASE_SERVICE_NAME}.
+
+               Username: ${POSTGRESQL_USER}
+               Password: ${POSTGRESQL_PASSWORD}
+          Database Name: ${POSTGRESQL_DATABASE}
+         Connection URL: postgresql://${DATABASE_SERVICE_NAME}:5432/
+
+        For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
+
+Objects:
+    Secret          ${DATABASE_SERVICE_NAME}
+    Service         ${DATABASE_SERVICE_NAME}
+    PersistentVolumeClaim   ${DATABASE_SERVICE_NAME}
+    DeploymentConfig        ${DATABASE_SERVICE_NAME}
+</code></pre>
+
+<pre><code>oc new-app --name=db --template=postgresql-persistent -p DATABASE_SERVICE_NAME=db -p POSTGRESQL_USER=postgres -p POSTGRESQL_PASSWORD=password -p POSTGRESQL_DATABASE=postgres
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Deploying template &quot;openshift/postgresql-persistent&quot; to project instavote
+
+     PostgreSQL
+     ---------
+     PostgreSQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
+
+     NOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.
+
+     The following service(s) have been created in your project: db.
+
+            Username: postgres
+            Password: password
+       Database Name: postgres
+      Connection URL: postgresql://db:5432/
+
+     For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
+
+     * With parameters:
+        * Memory Limit=512Mi
+        * Namespace=openshift
+        * Database Service Name=db
+        * PostgreSQL Connection Username=postgres
+        * PostgreSQL Connection Password=password
+        * PostgreSQL Database Name=postgres
+        * Volume Capacity=1Gi
+        * Version of PostgreSQL Image=9.6
+
+--&gt; Creating resources ...
+    secret &quot;db&quot; created
+    service &quot;db&quot; created
+    persistentvolumeclaim &quot;db&quot; created
+    deploymentconfig &quot;db&quot; created
+--&gt; Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/db'
+    Run 'oc status' to view your app.
+</code></pre>
+
+<h4 id="using-docker-strategy-with-oc-new-app-to-deploy-worker-app">Using docker strategy with oc new-app to deploy worker app</h4>
+<p>In this section we are talking about docker Registry with oc new-app to deploy worker application. We have already deployed vote, result and db application. worker application are java application. Use the following command.</p>
+<pre><code>oc new-app --name=worker https://github.com/initcron/example-voting-app.git --context-dir=worker
+</code></pre>
+
+<p>[output]</p>
+<pre><code>error: multiple images or templates matched &quot;jee&quot;: 7
+
+The argument &quot;jee&quot; could apply to the following Docker images, OpenShift image streams, or templates:
+
+* Image stream &quot;wildfly&quot; (tag &quot;12.0&quot;) in project &quot;openshift&quot;
+  Use --image-stream=&quot;openshift/wildfly:12.0&quot; to specify this image or template
+
+* Image stream &quot;wildfly&quot; (tag &quot;8.1&quot;) in project &quot;openshift&quot;
+  Use --image-stream=&quot;openshift/wildfly:8.1&quot; to specify this image or template
+
+* Image stream &quot;wildfly&quot; (tag &quot;9.0&quot;) in project &quot;openshift&quot;
+  Use --image-stream=&quot;openshift/wildfly:9.0&quot; to specify this image or template
+
+* Image stream &quot;wildfly&quot; (tag &quot;latest&quot;) in project &quot;openshift&quot;
+  Use --image-stream=&quot;openshift/wildfly:latest&quot; to specify this image or template
+
+* Image stream &quot;wildfly&quot; (tag &quot;10.0&quot;) in project &quot;openshift&quot;
+  Use --image-stream=&quot;openshift/wildfly:10.0&quot; to specify this image or template
+
+To view a full list of matches, use 'oc new-app -S jee'
+</code></pre>
+
+<pre><code>oc new-app --name=worker https://github.com/initcron/example-voting-app.git#openshift --context-dir=worker
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>--&gt; Found Docker image 991f779 (22 months old) from Docker Hub for &quot;schoolofdevops/maven&quot;
+
+    * An image stream will be created as &quot;maven:latest&quot; that will track the source image
+    * A Docker build using source code from https://github.com/initcron/example-voting-app.git#openshift will be created
+      * The resulting image will be pushed to image stream &quot;worker:latest&quot;
+      * Every time &quot;maven:latest&quot; changes a new build will be triggered
+    * This image will be deployed in deployment config &quot;worker&quot;
+    * The image does not expose any ports - if you want to load balance or send traffic to this component
+      you will need to create a service with 'expose dc/worker --port=[port]' later
+    * WARNING: Image &quot;schoolofdevops/maven&quot; runs as the 'root' user which may not be permitted by your cluster administrator
+
+--&gt; Creating resources ...
+    imagestream &quot;maven&quot; created
+    imagestream &quot;worker&quot; created
+    buildconfig &quot;worker&quot; created
+    deploymentconfig &quot;worker&quot; created
+--&gt; Success
+    Build scheduled, use 'oc logs -f bc/worker' to track its progress.
+    Run 'oc status' to view your app.
+</code></pre>
+
+<h4 id="rebuilding-from-changes-to-local-repository">Rebuilding from changes to local repository</h4>
+<p>In the previous section we deployed java worker application but database not connected . In this section we will rebuild application. use  following command for start build.</p>
+<pre><code>oc start-build worker --from=example-voteing-app
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

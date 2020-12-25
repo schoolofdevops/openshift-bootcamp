@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Creating Deployments - Openshift Bootcamp</title>
+  <title>04 database connection - Openshift Bootcamp</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Creating Deployments";
-    var mkdocs_page_input_path = "2. kubernetes_deployment.md";
+    var mkdocs_page_name = "04 database connection";
+    var mkdocs_page_input_path = "04_database_connection.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -68,18 +68,9 @@
     <a class="" href="../deploying_pods/">Launching Pods</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Creating Deployments</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#creating-a-deployment">Creating a Deployment</a></li>
-    
-
-    <li class="toctree-l2"><a href="#scaling-a-deployment">Scaling a deployment</a></li>
-    
-
-    </ul>
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -129,7 +120,7 @@
     
       
     
-    <li>Creating Deployments</li>
+    <li>04 database connection</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -139,110 +130,21 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="creating-a-deployment">Creating a Deployment</h2>
-<p>A Deployment is a higher level abstraction which sits on top of replica sets and allows you to manage the way applications are deployed, rolled back at a controlled rate.</p>
-<p>Topics  <br />
-  * Rollout a Replicaset<br />
-  * Deploy a new version : Creates a new replica set every time, moves pods from RS(n) to RS(n+1)<br />
-  * Rollback to previous RS    <br />
-  * Auto Scaling<br />
-  * Pause Deployments  </p>
-<p>File: vote-deploy.yaml</p>
-<pre><code>apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: vote
-  namespace: dev
-spec:
-  replicas: 8
-  selector:
-    matchLabels:
-      tier: front
-      app: vote
-    matchExpressions:
-      - {key: tier, operator: In, values: [front]}
-  revisionHistoryLimit: 4
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 2
-  minReadySeconds: 20
-  paused: false
-  template:
-    metadata:
-      labels:
-        app: vote
-        role: ui
-        tier: front
-    spec:
-      containers:
-      - image: schoolofdevops/vote
-        imagePullPolicy: Always
-        name: vote
-        ports:
-        - containerPort: 80
-          protocol: TCP
-</code></pre>
-
-<p>Deployment spec (deployment.spec) contains the following,</p>
+                <h3 id="service-discovert-deploying-and-conneting-to-a-database">Service Discovert, Deploying and conneting to a database</h3>
+<p>In this section we gonna to connect databse to you r application Deployment on the database.</p>
+<p>Here, we are connect to mariaDB database.</p>
 <ul>
-<li>replicaset specs<ul>
-<li>selectors  </li>
-<li>replicas  </li>
+<li>Go to overview</li>
 </ul>
-</li>
-<li>deployment spec<ul>
-<li>strategy</li>
-<li>rollingUpdate</li>
-<li>minReadySeconds</li>
-</ul>
-</li>
-<li>pod template<ul>
-<li>metadata, labels</li>
-<li>container specs</li>
-</ul>
-</li>
-</ul>
-<p>Lets  create the Deployment</p>
-<pre><code>oc apply -f vote_deploy.yaml --record
-</code></pre>
-
-<p>Now that the deployment is created. To validate,</p>
-<pre><code>oc get deployment
-oc get rs
-oc rollout status deployment/vote
-oc get pods --show-labels
-</code></pre>
-
-<p>Sample Output</p>
-<pre><code>oc get deployments
-NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-vote   3         3         3            1           3m
-</code></pre>
-
-<h2 id="scaling-a-deployment">Scaling a deployment</h2>
-<p>To scale a deployment in Openshift:</p>
-<pre><code>oc scale deployment/vote --replicas=5
-</code></pre>
-
-<p>Sample output:</p>
-<pre><code>oc scale deployment/vote --replicas=5
-deployment &quot;vote&quot; scaled
-</code></pre>
+<p>In the overview section openshift shows you in right side <strong>Add to Project</strong> click on this and select databases and either you can use mysql or maraiaDB. MariaDB is just the fork of mysql database.</p>
+<p><img alt="project" src="../images/db3.png" /></p>
+<p>After selecting the database provide some configuration of the databes like databae name, database connection, database password etc</p>
+<p><img alt="project" src="../images/db5.png" /></p>
+<p><img alt="project" src="../images/db6.png" /></p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../exposing_app_with_service/" class="btn btn-neutral float-right" title="Service Endpoints">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../deploying_pods/" class="btn btn-neutral" title="Launching Pods"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -266,10 +168,6 @@ deployment &quot;vote&quot; scaled
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../deploying_pods/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../exposing_app_with_service/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

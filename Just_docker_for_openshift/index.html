@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Just docker for openshift - Openshift Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Just docker for openshift";
+    var mkdocs_page_input_path = "Just_docker_for_openshift.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Openshift Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openshift-bootcamp/">About the Course</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configuring Cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../deploying_pods/">Launching Pods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2. kubernetes_deployment/">Creating Deployments</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../exposing_app_with_service/">Service Endpoints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rollouts-and-rollbacks/">Rollouts and Rollbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8. Using Configmaps and Secrets/">Using Configmaps and Secrets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. Kubernetes Autoscaling/">Auto Scaling Capacity with HPA</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6. deploying_sample_app/">Mini Project</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Openshift Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Just docker for openshift</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="just-enough-docker-for-a-openshift-practitioner">Just Enough Docker for a Openshift Practitioner</h3>
+<h4 id="setting-up-and-validating-docker-environment">Setting up and validating docker environment</h4>
+<p>In this chapter, we are going to set docker environment. Visit <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">docs.docker.com</a> this page provides all the information of how to install docker on ubuntu, mac or windows. In this page left side you can see couple of options . when you select docker CE (Docker Community Edition). Thre is also provides instructions on different os platform.</p>
+<p>There are two options</p>
+<ul>
+<li>docker EE</li>
+<li>docker CE</li>
+</ul>
+<p>Here , we going for docker for ubuntu you can use the following script.</p>
+<pre><code>#!/bin/bash
+apt-get update
+apt-get install -y git wget
+
+# Install Docker
+apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+
+apt-get update
+
+apt-get install -yq docker-ce
+</code></pre>
+
+<p>After install docker using above script you can validate using following command</p>
+<pre><code>docker version
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Client:
+ Version:      18.03.1-ce
+ API version:  1.37
+ Go version:   go1.9.5
+ Git commit:   9ee9f40
+ Built:        Thu Apr 26 07:17:20 2018
+ OS/Arch:      linux/amd64
+ Experimental: false
+ Orchestrator: swarm
+
+Server:
+ Engine:
+  Version:      18.03.1-ce
+  API version:  1.37 (minimum version 1.12)
+  Go version:   go1.9.5
+  Git commit:   9ee9f40
+  Built:        Thu Apr 26 07:15:30 2018
+  OS/Arch:      linux/amd64
+  Experimental: false
+
+</code></pre>
+
+<p>Run docker Hello-world</p>
+<pre><code>sudo docker run hello-world
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+d1725b59e92d: Pull complete
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+</code></pre>
+
+<h4 id="play-with-docker">Play-with-docker</h4>
+<p>If you don't have way to install docker locally even remote server. you can also use protal <a href="https://labs.play-with-docker.com/">play-with-docker</a></p>
+<p>Here,</p>
+<p>we have to login with your docker hub id and password. if you don't have docker hub id and password you should need to create your docker hub id and password <a href="https://hub.docker.com/">docker hub</a> . Play-with-docker gives you working docker environment. you can see the UI</p>
+<p><img alt="docker" src="../images/docker1.png" /></p>
+<p>Here,</p>
+<p>In this Page left side create instance label click on on that label they provide you docker envirenment. you can also ren the following command.</p>
+<p>docker version command shows you to all the information of docker like version, api version Git commit etc.</p>
+<pre><code>docker version
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Client:
+ Version:      18.03.1-ce
+ API version:  1.37
+ Go version:   go1.9.5
+ Git commit:   9ee9f40
+ Built:        Thu Apr 26 07:17:20 2018
+ OS/Arch:      linux/amd64
+ Experimental: false
+ Orchestrator: swarm
+
+Server:
+ Engine:
+  Version:      18.03.1-ce
+  API version:  1.37 (minimum version 1.12)
+  Go version:   go1.9.5
+  Git commit:   9ee9f40
+  Built:        Thu Apr 26 07:15:30 2018
+  OS/Arch:      linux/amd64
+  Experimental: false
+
+</code></pre>
+
+<p>Docker hello world image</p>
+<pre><code>docker run hello-world
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+d1725b59e92d: Pull complete
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+</code></pre>
+
+<h4 id="running-your-first-container">Running your first container</h4>
+<p>when your enviromnment ready you can start your first docker container . when you running your forst docker container you need docker registry. Go to <a href="https://hub.docker.com/">docker public registry</a>. when you vist docker hub you can see bunch of images avaible here.</p>
+<p>we are going to pick basic os image alpine . alpine is distribution of linux, ubuntu etc why we are choosing this image because of footprint of image and you can look at the size of the image look like 2 0r 3 mb that is relly good for smoke testing and running samaller images.</p>
+<p>Now we have a basic understanding of docker command and sub commands, let us dive straight into launching our very first container</p>
+<pre><code>docker container run alpine:3.6 uptime
+</code></pre>
+
+<p>Where,</p>
+<ul>
+<li>we are using docker client to</li>
+<li>run a application/command uptime using</li>
+<li>an image by name alpine</li>
+</ul>
+<p>[output]</p>
+<pre><code>Unable to find image 'alpine:3.6' locally
+3.6: Pulling from library/alpine
+117f30b7ae3d: Pull complete
+Digest: sha256:02eb5cfe4b721495135728ab4aea87418fd4edbfbf83612130a81191f0b2aae3
+Status: Downloaded newer image for alpine:3.6
+ 07:45:40 up  3:13,  load average: 0.00, 0.00, 0.00
+</code></pre>
+
+<p><strong>What happened?</strong>
+This command will</p>
+<ul>
+<li>Pull the alpine image file from docker hub, a cloud registry</li>
+<li>Create a runtime environment/ container with the above image</li>
+<li>Launch a program (called uptime) inside that container</li>
+<li>Stream that output to the terminal</li>
+<li>Stop the container once the program is exited</li>
+</ul>
+<p>Let's see what happens when we run that command again,</p>
+<p>[Output]</p>
+<pre><code>docker run alpine uptime
+ 07:48:06 up  3:15,  load average: 0.00, 0.00, 0.00
+</code></pre>
+
+<h4 id="making-container-persist-with-idt-options">Making container persist with -idt options</h4>
+<p>We can interact with docker containers by giving -it flags at the run time. These flags stand for</p>
+<ul>
+<li>i - Interactive</li>
+<li>t - tty</li>
+<li>d - detach</li>
+</ul>
+<pre><code>docker container run -it alpine:3.4 sh
+</code></pre>
+
+<p>[ouput]</p>
+<pre><code>Unable to find image 'alpine:3.4' locally
+3.4: Pulling from library/alpine
+
+e110a4a17941: Pull complete
+Digest: sha256:3dcdb92d7432d56604d4545cbd324b14e647b313626d99b889d0626de158f73a
+Status: Downloaded newer image for alpine:3.4
+/ #
+
+</code></pre>
+
+<p>As you see, we have landed straight into <strong>sh</strong> shell of that container. This is the result of using <strong>-it</strong> flags and mentioning that container to run the <strong>sh</strong> shell. Don't try to exit that container yet. We have to execute some other commands in it to understand the next topic</p>
+<p>if you go inside the container</p>
+<h5 id="namespaced">Namespaced</h5>
+<p>Like a full fledged OS, Docker container has its own namespaces
+This enables Docker container to isolate itself from the host as well as other containers
+Run the following commands and see that alpine container has its own namespaces and not inheriting much from <strong>host OS</strong></p>
+<pre><code>cat /etc/issue
+</code></pre>
+
+<pre><code>Welcome to Alpine Linux 3.4
+Kernel \r on an \m (\l)
+
+/ #
+
+</code></pre>
+
+<p>command</p>
+<pre><code>pa aux
+</code></pre>
+
+<p>[output]</p>
+<pre><code>PID   USER     TIME   COMMAND
+    1 root       0:00 sh
+    7 root       0:00 ps aux
+
+</code></pre>
+
+<pre><code>ifconfig
+</code></pre>
+
+<p>[output]</p>
+<pre><code>eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:02  
+          inet addr:172.17.0.2  Bcast:172.17.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:64 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:9402 (9.1 KiB)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+</code></pre>
+
+<h4 id="essential-container-operations-list-logs-exec-cp-inspect-stop-rm">Essential Container Operations - list, logs, exec, cp, inspect, stop, rm</h4>
+<p>In this secttion we are looking for some of the essential container operations like list,logs, exec etc.</p>
+<p>First we do list the containers</p>
+<pre><code>docker ps -a
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
+60c643264937        alpine:3.4          &quot;sh&quot;                16 minutes ago      Exited (0) 2 minutes ago                           kind_babbage
+105b0de546cb        ubuntu              &quot;bash&quot;              About an hour ago   Exited (0) About an hour ago                       admiring_cori
+8801c9dc6617        hello-world         &quot;/hello&quot;            2 hours ago         Exited (0) 2 hours ago                             hardcore_blackwell
+
+</code></pre>
+
+<p>change the container name</p>
+<pre><code>docker rename kind_babbage loop
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
+60c643264937        alpine:3.4          &quot;sh&quot;                17 minutes ago      Exited (0) 2 minutes ago                           loop
+105b0de546cb        ubuntu              &quot;bash&quot;              About an hour ago   Exited (0) About an hour ago                       admiring_cori
+8801c9dc6617        hello-world         &quot;/hello&quot;            2 hours ago         Exited (0) 2 hours ago                             hardcore_blackwell
+
+</code></pre>
+
+<p>look at the name of the first container</p>
+<p>If you want to follow the log in real-time, use -f flag</p>
+<pre><code>docker logs 5a75df45379c
+</code></pre>
+
+<p>[output]</p>
+<pre><code>PID   USER     TIME  COMMAND
+    1 root      0:00 ps aux , uptime
+
+</code></pre>
+
+<p>docker <strong>exec</strong> this command allows you to run command inside container</p>
+<pre><code>docker exec e9f957dca1b7 ps aux
+</code></pre>
+
+<p>[output]</p>
+<pre><code>PID   USER     TIME   COMMAND
+    1 root       0:00 /bin/sh
+    6 root       0:00 ps aux
+
+</code></pre>
+
+<p>you can also use docker <strong>inspect</strong> command . this command gives you detail information about container</p>
+<pre><code>docker inspect e9f957dca1b7
+</code></pre>
+
+<p>[output]</p>
+<pre><code>[
+    {
+        &quot;Id&quot;: &quot;e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237&quot;,
+        &quot;Created&quot;: &quot;2018-09-25T08:49:47.619188383Z&quot;,
+        &quot;Path&quot;: &quot;/bin/sh&quot;,
+        &quot;Args&quot;: [],
+        &quot;State&quot;: {
+            &quot;Status&quot;: &quot;running&quot;,
+            &quot;Running&quot;: true,
+            &quot;Paused&quot;: false,
+            &quot;Restarting&quot;: false,
+            &quot;OOMKilled&quot;: false,
+            &quot;Dead&quot;: false,
+            &quot;Pid&quot;: 19679,
+            &quot;ExitCode&quot;: 0,
+            &quot;Error&quot;: &quot;&quot;,
+            &quot;StartedAt&quot;: &quot;2018-09-25T08:49:48.794801063Z&quot;,
+            &quot;FinishedAt&quot;: &quot;0001-01-01T00:00:00Z&quot;
+        },
+        &quot;Image&quot;: &quot;sha256:174b26fe09c724368aa2c3cc8f2b979b915a33f7b50c94cd215380d56147cd60&quot;,
+        &quot;ResolvConfPath&quot;: &quot;/var/lib/docker/containers/e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237/resolv.conf&quot;,
+        &quot;HostnamePath&quot;: &quot;/var/lib/docker/containers/e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237/hostname&quot;,
+        &quot;HostsPath&quot;: &quot;/var/lib/docker/containers/e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237/hosts&quot;,
+        &quot;LogPath&quot;: &quot;/var/lib/docker/containers/e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237/e9f957dca1b727be04357c77edbb2e2b257b22c0832d9f13b4ff06e3854a1237-json.log&quot;,
+        &quot;Name&quot;: &quot;/xenodochial_hugle&quot;,
+        &quot;RestartCount&quot;: 0,
+        &quot;Driver&quot;: &quot;overlay2&quot;,
+        &quot;Platform&quot;: &quot;linux&quot;,
+        &quot;MountLabel&quot;: &quot;&quot;,
+        &quot;ProcessLabel&quot;: &quot;&quot;,
+        &quot;AppArmorProfile&quot;: &quot;docker-default&quot;,
+        &quot;ExecIDs&quot;: null,
+        &quot;HostConfig&quot;: {
+            &quot;Binds&quot;: null,
+            &quot;ContainerIDFile&quot;: &quot;&quot;,
+            &quot;LogConfig&quot;: {
+                &quot;Type&quot;: &quot;json-file&quot;,
+                &quot;Config&quot;: {}
+            },
+            &quot;NetworkMode&quot;: &quot;default&quot;,
+            &quot;PortBindings&quot;: {},
+            &quot;RestartPolicy&quot;: {
+                &quot;Name&quot;: &quot;no&quot;,
+                &quot;MaximumRetryCount&quot;: 0
+            },
+            &quot;AutoRemove&quot;: false,
+            &quot;VolumeDriver&quot;: &quot;&quot;,
+            &quot;VolumesFrom&quot;: null,
+            &quot;CapAdd&quot;: null,
+            &quot;CapDrop&quot;: null,
+            &quot;Dns&quot;: [],
+            &quot;DnsOptions&quot;: [],
+            &quot;DnsSearch&quot;: [],
+            &quot;ExtraHosts&quot;: null,
+            &quot;GroupAdd&quot;: null,
+            &quot;IpcMode&quot;: &quot;shareable&quot;,
+            &quot;Cgroup&quot;: &quot;&quot;,
+            &quot;Links&quot;: null,
+            &quot;OomScoreAdj&quot;: 0,
+            &quot;PidMode&quot;: &quot;&quot;,
+            &quot;Privileged&quot;: false,
+            &quot;PublishAllPorts&quot;: false,
+            &quot;ReadonlyRootfs&quot;: false,
+            &quot;SecurityOpt&quot;: null,
+            &quot;UTSMode&quot;: &quot;&quot;,
+            &quot;UsernsMode&quot;: &quot;&quot;,
+            &quot;ShmSize&quot;: 67108864,
+            &quot;Runtime&quot;: &quot;runc&quot;,
+            &quot;ConsoleSize&quot;: [
+                0,
+                0
+            ],
+            &quot;Isolation&quot;: &quot;&quot;,
+            &quot;CpuShares&quot;: 0,
+            &quot;Memory&quot;: 0,
+            &quot;NanoCpus&quot;: 0,
+            &quot;CgroupParent&quot;: &quot;&quot;,
+            &quot;BlkioWeight&quot;: 0,
+            &quot;BlkioWeightDevice&quot;: [],
+            &quot;BlkioDeviceReadBps&quot;: null,
+            &quot;BlkioDeviceWriteBps&quot;: null,
+            &quot;BlkioDeviceReadIOps&quot;: null,
+            &quot;BlkioDeviceWriteIOps&quot;: null,
+            &quot;CpuPeriod&quot;: 0,
+            &quot;CpuQuota&quot;: 0,
+            &quot;CpuRealtimePeriod&quot;: 0,
+            &quot;CpuRealtimeRuntime&quot;: 0,
+            &quot;CpusetCpus&quot;: &quot;&quot;,
+            &quot;CpusetMems&quot;: &quot;&quot;,
+            &quot;Devices&quot;: [],
+            &quot;DeviceCgroupRules&quot;: null,
+            &quot;DiskQuota&quot;: 0,
+            &quot;KernelMemory&quot;: 0,
+            &quot;MemoryReservation&quot;: 0,
+            &quot;MemorySwap&quot;: 0,
+            &quot;MemorySwappiness&quot;: null,
+            &quot;OomKillDisable&quot;: false,
+            &quot;PidsLimit&quot;: 0,
+            &quot;Ulimits&quot;: null,
+            &quot;CpuCount&quot;: 0,
+            &quot;CpuPercent&quot;: 0,
+            &quot;IOMaximumIOps&quot;: 0,
+            &quot;IOMaximumBandwidth&quot;: 0
+        },
+        &quot;GraphDriver&quot;: {
+            &quot;Data&quot;: {
+                &quot;LowerDir&quot;: &quot;/var/lib/docker/overlay2/517ee8ad38d79c97b5b4d9351058cf658265bbd752ffca764d6123cd5a45d7a3-init/diff:/var/lib/docker/overlay2/0ff2c00ee39d00f3cbdee2538e5bd08c0650b0a7531e6277513fb1411177c056/diff&quot;,
+                &quot;MergedDir&quot;: &quot;/var/lib/docker/overlay2/517ee8ad38d79c97b5b4d9351058cf658265bbd752ffca764d6123cd5a45d7a3/merged&quot;,
+                &quot;UpperDir&quot;: &quot;/var/lib/docker/overlay2/517ee8ad38d79c97b5b4d9351058cf658265bbd752ffca764d6123cd5a45d7a3/diff&quot;,
+                &quot;WorkDir&quot;: &quot;/var/lib/docker/overlay2/517ee8ad38d79c97b5b4d9351058cf658265bbd752ffca764d6123cd5a45d7a3/work&quot;
+            },
+            &quot;Name&quot;: &quot;overlay2&quot;
+        },
+        &quot;Mounts&quot;: [],
+        &quot;Config&quot;: {
+            &quot;Hostname&quot;: &quot;e9f957dca1b7&quot;,
+            &quot;Domainname&quot;: &quot;&quot;,
+            &quot;User&quot;: &quot;&quot;,
+            &quot;AttachStdin&quot;: false,
+            &quot;AttachStdout&quot;: false,
+            &quot;AttachStderr&quot;: false,
+            &quot;Tty&quot;: true,
+            &quot;OpenStdin&quot;: true,
+            &quot;StdinOnce&quot;: false,
+            &quot;Env&quot;: [
+                &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+            ],
+            &quot;Cmd&quot;: [
+                &quot;/bin/sh&quot;
+            ],
+            &quot;ArgsEscaped&quot;: true,
+            &quot;Image&quot;: &quot;alpine:3.4&quot;,
+            &quot;Volumes&quot;: null,
+            &quot;WorkingDir&quot;: &quot;&quot;,
+            &quot;Entrypoint&quot;: null,
+            &quot;OnBuild&quot;: null,
+            &quot;Labels&quot;: {}
+        },
+        &quot;NetworkSettings&quot;: {
+            &quot;Bridge&quot;: &quot;&quot;,
+            &quot;SandboxID&quot;: &quot;a819dc4b5b24f71699cc58804ba227dfbfcd1431deab0bea5fe27ab5b97cc95e&quot;,
+            &quot;HairpinMode&quot;: false,
+            &quot;LinkLocalIPv6Address&quot;: &quot;&quot;,
+            &quot;LinkLocalIPv6PrefixLen&quot;: 0,
+            &quot;Ports&quot;: {},
+            &quot;SandboxKey&quot;: &quot;/var/run/docker/netns/a819dc4b5b24&quot;,
+            &quot;SecondaryIPAddresses&quot;: null,
+            &quot;SecondaryIPv6Addresses&quot;: null,
+            &quot;EndpointID&quot;: &quot;9de8e6914d71fc9b6d569a56ebaeae58aeb1fa21717aa1d94f200d22d82e0d37&quot;,
+            &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+            &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+            &quot;GlobalIPv6PrefixLen&quot;: 0,
+            &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+            &quot;IPPrefixLen&quot;: 16,
+            &quot;IPv6Gateway&quot;: &quot;&quot;,
+            &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;a379dcbffa8fff8004d04727d8898d46cf032a830a18d8507d7acbb3d14c552a&quot;,
+                    &quot;EndpointID&quot;: &quot;9de8e6914d71fc9b6d569a56ebaeae58aeb1fa21717aa1d94f200d22d82e0d37&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+
+</code></pre>
+
+<p>docker <strong>copy</strong></p>
+<pre><code>docker cp testfile e9f957dca1b7:/opt
+</code></pre>
+
+<p>docker <strong>diff</strong></p>
+<pre><code>docker diff e9f957dca1b7
+</code></pre>
+
+<p>[output]</p>
+<pre><code>A /opt
+
+</code></pre>
+
+<p>docker <strong>stop</strong></p>
+<pre><code>docker stop e9f 1b7  
+</code></pre>
+
+<p>[output]</p>
+<pre><code>e9f
+1b7
+</code></pre>
+
+<p>docker <strong>remove</strong></p>
+<pre><code>docker rm e9f 1b7
+</code></pre>
+
+<p>[output]</p>
+<pre><code>e9f
+1b7
+</code></pre>
+
+<h4 id="publishing-containers-using-port-mapping">Publishing containers using port mapping</h4>
+<p>Now, we have already start container, now access that application outside world, we are going through  to launch container nginx web server image you can choose the image on docker hub registry for latest version.</p>
+<pre><code>docker container run -idt -P nginx
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+802b00ed6f79: Pull complete
+e9d0e0ea682b: Pull complete
+d8b7092b9221: Pull complete
+Digest: sha256:24a0c4b4a4c0eb97a1aabb8e29f18e917d05abfe1b7a7c07857230879ce7d3d3
+Status: Downloaded newer image for nginx:latest
+6d631d2ecfddb76481e2e75c6f14373dde5907e442231c38c062574cc4b880da
+</code></pre>
+
+<p>Check the port</p>
+<pre><code>docker ps
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
+6d631d2ecfdd        nginx               &quot;nginx -g 'daemon of…&quot;   49 seconds ago      Up 47 seconds       0.0.0.0:32768-&gt;80/tcp   dreamy_gates
+
+</code></pre>
+
+<p>the container are running on  inside port 80 . If you want to acess on outside use the port 32768. docker are automatically pick up the port
+access this outside use your <strong>host_ip:32768</strong> in browser.</p>
+<p>you can also define specific port use following command</p>
+<pre><code>docker container run -idt -p 8888:80 nginx
+</code></pre>
+
+<pre><code>docker ps
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
+3104f3f3c062        nginx               &quot;nginx -g 'daemon of…&quot;   52 seconds ago      Up 50 seconds       0.0.0.0:8888-&gt;80/tcp    mystifying_golick
+6d631d2ecfdd        nginx               &quot;nginx -g 'daemon of…&quot;   11 minutes ago      Up 11 minutes       0.0.0.0:32768-&gt;80/tcp   dreamy_gates
+
+</code></pre>
+
+<p>we going to deploy another web based application ghost</p>
+<pre><code>docker run -d --name ghost -p 3001:2368 ghost:alpine
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Unable to find image 'ghost:alpine' locally
+alpine: Pulling from library/ghost
+4fe2ade4980c: Already exists
+eeb7d76f44e7: Pull complete
+e35f88fcc259: Pull complete
+b4d59ef07366: Pull complete
+dcee404d51ae: Pull complete
+f0d2c5f09664: Pull complete
+6feecb37b3bd: Pull complete
+4e29bf9bf09f: Pull complete
+Digest: sha256:d1d329a9e28096003ddbce69f3fc4a81b72c2c0c9e88426fc432fd3f0e1146e1
+Status: Downloaded newer image for ghost:alpine
+4c84890e1f4438a647b287751beeda02490ed7a312c05ae4a64ba7f01047a76b
+
+</code></pre>
+
+<pre><code>docker ps
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4c84890e1f44        ghost:alpine        &quot;docker-entrypoint.s…&quot;   40 seconds ago      Up 38 seconds       0.0.0.0:3001-&gt;2368/tcp   ghost
+3104f3f3c062        nginx               &quot;nginx -g 'daemon of…&quot;   8 minutes ago       Up 8 minutes        0.0.0.0:8888-&gt;80/tcp     mystifying_golick
+6d631d2ecfdd        nginx               &quot;nginx -g 'daemon of…&quot;   19 minutes ago      Up 19 minutes       0.0.0.0:32768-&gt;80/tcp    dreamy_gates
+
+</code></pre>
+
+<p>this application are running on port 3001 you can see on web browser <strong>host_ip:3001</strong> or <strong>localhost:3001</strong></p>
+<h4 id="using-docker-instead-of-vms-to-create-development-environments">Using docker instead of VMs to create development environments</h4>
+<p>If you have using vm to runing docker container it takes some extra time to run docker container .
+if you want to see all the images use following command. this shows you all the present images in your local environment.</p>
+<pre><code>docker images
+</code></pre>
+
+<p>[output]</p>
+<pre><code>ghost                                      alpine              fd8dde6880e2        4 days ago          422MB
+alpine                                     3.4                 174b26fe09c7        13 days ago         4.82MB
+alpine                                     latest              196d12cf6ab1        13 days ago         4.41MB
+hello-world                                latest              4ab4c602aa5e        2 weeks ago         1.84kB
+ubuntu                                     latest              cd6d8154f1e1        2 weeks ago         84.1MB
+
+</code></pre>
+
+<p>if wanna see all the layers of docker image use following command</p>
+<pre><code>docker image history ghost:alpine
+</code></pre>
+
+<p>[output]</p>
+<pre><code>IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+fd8dde6880e2        4 days ago          /bin/sh -c #(nop)  CMD [&quot;node&quot; &quot;current/inde…   0B                  
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop)  EXPOSE 2368/tcp              0B                  
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop)  ENTRYPOINT [&quot;docker-entry…   0B                  
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop) COPY file:984b6359fb5468bd…   584B                
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop)  VOLUME [/var/lib/ghost/co…   0B                  
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop) WORKDIR /var/lib/ghost        0B                  
+&lt;missing&gt;           4 days ago          /bin/sh -c set -ex;  mkdir -p &quot;$GHOST_INSTAL…   301MB               
+&lt;missing&gt;           4 days ago          /bin/sh -c #(nop)  ENV GHOST_VERSION=2.1.3      0B                  
+&lt;missing&gt;           10 days ago         /bin/sh -c #(nop)  ENV GHOST_CONTENT=/var/li…   0B                  
+&lt;missing&gt;           10 days ago         /bin/sh -c #(nop)  ENV GHOST_INSTALL=/var/li…   0B                  
+&lt;missing&gt;           10 days ago         /bin/sh -c npm install -g &quot;ghost-cli@$GHOST_…   51.3MB              
+&lt;missing&gt;           10 days ago         /bin/sh -c #(nop)  ENV GHOST_CLI_VERSION=1.9…   0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop)  ENV NODE_ENV=production      0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c apk add --no-cache   bash            3.82MB              
+&lt;missing&gt;           13 days ago         /bin/sh -c apk add --no-cache 'su-exec&gt;=0.2'    31.8kB              
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop)  CMD [&quot;node&quot;]                 0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c apk add --no-cache --virtual .bui…   4.53MB              
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop)  ENV YARN_VERSION=1.9.4       0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c addgroup -g 1000 node     &amp;&amp; addu…   56.7MB              
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop)  ENV NODE_VERSION=8.12.0      0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop)  CMD [&quot;/bin/sh&quot;]              0B                  
+&lt;missing&gt;           13 days ago         /bin/sh -c #(nop) ADD file:25c10b1d1b41d46a1…   4.41MB   
+</code></pre>
+
+<p>If you want to use docker devlopment envireonment just pull the ubuntu and centos image
+you can pull images  using docker images</p>
+<pre><code>docker pull ubuntu
+</code></pre>
+
+<p>[outpot]</p>
+<pre><code>Using default tag: latest
+latest: Pulling from library/ubuntu
+Digest: sha256:de774a3145f7ca4f0bd144c7d4ffb2931e06634f11529653b23eba85aef8e378
+Status: Image is up to date for ubuntu:latest
+
+</code></pre>
+
+<p>pulling centos</p>
+<pre><code>docker pull centos
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Using default tag: latest
+latest: Pulling from library/centos
+256b176beaff: Pull complete
+Digest: sha256:6f6d986d425aeabdc3a02cb61c02abb2e78e57357e92417d6d58332856024faf
+Status: Downloaded newer image for centos:latest
+
+</code></pre>
+
+<p>here, the images are ready we are going to create dev environment using ubuntu image</p>
+<pre><code>docker container run -idt --name dev --net host ubuntu bash
+158dfe96692f9381842d009abfea428614fed4d9a16de68d18b408549315fbd9
+</code></pre>
+
+<pre><code>docker container run -idt --name dev-centos --net host centos bash
+99be0c7548ab3c762d7af2fa0cc73a5ad1505589424d82bea2c065a4f1d3bdf7
+</code></pre>
+
+<pre><code>docker ps -n 2
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+99be0c7548ab        centos              &quot;bash&quot;              57 seconds ago      Up 56 seconds                           dev-centos
+158dfe96692f        ubuntu              &quot;bash&quot;              2 minutes ago       Up 2 minutes                            dev
+
+</code></pre>
+
+<p>if you want to go inside container use following command</p>
+<pre><code> docker exec -it dev bash
+</code></pre>
+
+<p>you can check procees inside the container</p>
+<pre><code>ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  18508  3004 pts/0    Ss+  10:15   0:00 bash
+root        10  0.0  0.0  18508  3384 pts/1    Ss   10:20   0:00 bash
+root        20  0.0  0.0  34400  2772 pts/1    R+   10:21   0:00 ps aux
+
+</code></pre>
+
+<p>you can run fowwing command also</p>
+<pre><code>apt-get update
+apt-get install vim
+touch /opt/testfile
+
+</code></pre>
+
+<pre><code>docker stop dev
+docker start dev
+</code></pre>
+
+<p>you can persist the data across. make the changes of dev environment as well , we wiiljust <strong>stop</strong> and <strong>start</strong> contaoner see the changes before start and stop.</p>
+<pre><code>docker exec -it dev bash
+</code></pre>
+
+<p>excute the following caommand</p>
+<pre><code>which vim
+ls /opt/
+</code></pre>
+
+<h4 id="portainer-web-console-to-managing-docker-environemnts">Portainer - Web console to managing Docker Environemnts</h4>
+<p>In this Section we are goiing for portainer web console which will allow you  web based application which manages your local or remote docker environment. you can also visit the <a href="https://portainer.io">portainer</a></p>
+<pre><code>docker volume create portainer_data
+</code></pre>
+
+<p>[output]</p>
+<pre><code>portainer_data
+</code></pre>
+
+<p>After creating volume excute following command</p>
+<pre><code>docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+</code></pre>
+
+<p>[output]</p>
+<pre><code>Unable to find image 'portainer/portainer:latest' locally
+latest: Pulling from portainer/portainer
+d1e017099d17: Pull complete
+d4e5419541f5: Pull complete
+Digest: sha256:07c0e19e28e18414dd02c313c36b293758acf197d5af45077e3dd69c630e25cc
+Status: Downloaded newer image for portainer/portainer:latest
+db7a8c18cdfcae46d6ccb9d3d5ad0a48568fdc8e5827f478f0c44b95b8235bdf
+
+</code></pre>
+
+<p>which will aloow container to connect to docker daemon and mange its on.</p>
+<pre><code>docker ps
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>CONTAINER ID        IMAGE                 COMMAND                  CREATED              STATUS              PORTS                    NAMES
+db7a8c18cdfc        portainer/portainer   &quot;/portainer&quot;             About a minute ago   Up About a minute   0.0.0.0:9000-&gt;9000/tcp   zen_jepsen
+99be0c7548ab        centos                &quot;bash&quot;                   32 minutes ago       Up 32 minutes                                dev-centos
+158dfe96692f        ubuntu                &quot;bash&quot;                   34 minutes ago       Up 34 minutes                                dev
+4c84890e1f44        ghost:alpine          &quot;docker-entrypoint.s…&quot;   About an hour ago    Up About an hour    0.0.0.0:3001-&gt;2368/tcp   ghost
+3104f3f3c062        nginx                 &quot;nginx -g 'daemon of…&quot;   About an hour ago    Up About an hour    0.0.0.0:8888-&gt;80/tcp     mystifying_golick
+6d631d2ecfdd        nginx                 &quot;nginx -g 'daemon of…&quot;   2 hours ago          Up 2 hours          0.0.0.0:32768-&gt;80/tcp    dreamy_gates
+
+</code></pre>
+
+<p>go to web browser use <strong>host_ip:9000</strong> or <strong>loaclhost:9000</strong></p>
+<p><img alt="portainer" src="../images/portainer.png" /></p>
+<p>here,we have create the password you it at least 8 char long</p>
+<p><img alt="portainer" src="../images/portainer1.png" /></p>
+<p>here i have to use my local environment</p>
+<ul>
+<li>click on as per your environment</li>
+<li>click on connect</li>
+</ul>
+<p><img alt="portainer" src="../images/portainer3.png" /></p>
+<p>above are the portainer page is already been setup. we dont worry abot how to launch this portainer set up this alredy avaible on docker images.</p>
+<ul>
+<li>clik on local up</li>
+</ul>
+<p><img alt="portainer" src="../images/portainer4.png" /></p>
+<p>here you can see how many container are present , network, volume etc</p>
+<h4 id="launching-application-stack-with-docker-compose">Launching Application Stack with Docker Compose</h4>
+<p>In this sections we are going to launch prometheus applications. the prometheus application are multiple serices present like pushgateawy and alertmanager that wy we need docker-compose file. just clone prometus repo.</p>
+<pre><code>git clone https://github.com/vegasbrianc/prometheus.git
+cd prometheus
+cat docker-compose.yaml
+</code></pre>
+
+<p>[output]</p>
+<pre><code>version: '3.1'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+networks:
+  front-tier:
+  back-tier:
+
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.1.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+    depends_on:
+      - cadvisor
+    networks:
+      - back-tier
+    restart: always
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.hostname == ${HOSTNAME}
+
+  node-exporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - &quot;^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)&quot;
+    ports:
+      - 9100:9100
+    networks:
+      - back-tier
+    restart: always
+    deploy:
+      mode: global
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    networks:
+      - back-tier
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.hostname == ${HOSTNAME}
+  cadvisor:
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8080:8080
+    networks:
+      - back-tier
+    restart: always
+    deploy:
+      mode: global
+
+  grafana:
+    image: grafana/grafana
+    user: &quot;104&quot;
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - back-tier
+      - front-tier
+    restart: always
+
+</code></pre>
+
+<p>In this file you can see all the services are defined with portmapping. you can run the following command to run docker compose file</p>
+<pre><code>docker-compose up -d
+</code></pre>
+
+<p>also use stop and down . stop for stop the all created container and down for delete all create container.</p>
+<pre><code>docker-compose stop
+</code></pre>
+
+<pre><code>docker-compose down
+</code></pre>
+
+<h4 id="building-an-image-manually-with-docker-commit">Building an image manually with docker commit</h4>
+<p>In this section we are going to see how to create image of application just excute following command</p>
+<pre><code>git clone https://github.com/schoolofdevops/facebooc.git
+
+</code></pre>
+
+<p>after cloning this repo we are going to launch ubuntu image this application running on port 1600 that why we are already exposing port.</p>
+<pre><code>docker container run -idt --name fb -p 16000:16000 ubuntu bash
+</code></pre>
+
+<p>connect to that container using following command</p>
+<pre><code>docker exec -it fb bash
+</code></pre>
+
+<p>after connecting that container use following instructions.</p>
+<p>Install following package:</p>
+<ul>
+<li>build-essential</li>
+<li>make</li>
+<li>libsqlite3-dev</li>
+<li>sqlite3</li>
+</ul>
+<pre><code>sudo apt-get update
+sudo apt-get install -yq build-essential make libsqlite3-dev sqlite3
+
+</code></pre>
+
+<p>after installing this packages we need source code cpoy your source code in insisde the container.</p>
+<pre><code>docker cp facebooc/ fb:/opt/
+</code></pre>
+
+<p>after copying the data go inside the container</p>
+<pre><code>docker exec -it fb bash
+</code></pre>
+
+<p>switch the dir.</p>
+<pre><code>cd /opt/facebooc/
+</code></pre>
+
+<p>then Build the application using following command</p>
+<pre><code>make all
+</code></pre>
+
+<p>Run the application using binary</p>
+<pre><code>bin/facebooc
+</code></pre>
+
+<p>now go to the web browser <strong>host_ip:16000</strong> or <strong>localhost:16000</strong></p>
+<p>then exit the container commit container using following command including your own tag with your docker hub id</p>
+<pre><code>docker container commit fb initcron/fb:v1
+</code></pre>
+
+<p>After creating image push to docker hub registry</p>
+<pre><code>docker login
+</code></pre>
+
+<pre><code>docker image push initcron/fb:v1
+</code></pre>
+
+<h4 id="automatiing-image-builds-with-a-dockerfile">Automatiing image builds with a Dockerfile</h4>
+<p>Above section we build the image using manual approch. In this we going to dockerfile to build image automation. just clone the repo. using following command.</p>
+<pre><code>git clone https://github.com/schoolofdevops/facebooc.git
+
+cd facebooc
+
+git checkout docker
+
+</code></pre>
+
+<p>you can see the Dockerfile</p>
+<pre><code>cat Dockerfile
+</code></pre>
+
+<p>[output]</p>
+<pre><code>FROM  ubuntu
+
+
+WORKDIR /opt/facebooc
+
+RUN  apt-get update &amp;&amp;  \
+     apt-get install -yq build-essential make git libsqlite3-dev sqlite3
+
+
+COPY . /opt/facebooc
+
+RUN  make all
+
+EXPOSE 16000
+
+CMD &quot;bin/facebooc&quot;
+
+</code></pre>
+
+<p>then build  docker image image</p>
+<pre><code>docker image build -t initcron/fb:v2 .
+
+</code></pre>
+
+<p>after build image launch it</p>
+<pre><code>docker container run -idt -P initcron/fb:v2
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
